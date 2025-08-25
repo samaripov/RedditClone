@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   get "users/new"
-  get "users/create"
+  post "users/create"
   get "users/edit"
-  get "users/update"
-  get "users/destroy"
-  get "/login", to: "sessions#new", as: "login"
+  patch "users/update"
+  delete "users/destroy"
+
+  get "/login", to: "sessions#new", as: "new_session"
   post "/login", to: "sessions#create", as: "login_user"
   resources :passwords, param: :token
 end
