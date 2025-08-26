@@ -3,5 +3,8 @@
   <%= form.email_field :email_address, placeholder: "Email (example@example.com)" %>
   <%= form.password_field :password, placeholder: "Password" %>
   <%= form.password_field :password_confirmation, placeholder: "Confirm password" %>
+  <% if action == "Update" %>
+    <%= form.password_field :current_password, placeholder: "Current password" %>
+  <% end %>
   <%= form.submit "#{action} Account" %>
 <% end %>

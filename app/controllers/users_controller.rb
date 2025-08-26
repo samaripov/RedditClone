@@ -22,6 +22,16 @@ class UsersController < ApplicationController
   end
 
   def update
+    unless @user.authenticate(params[:user][:current_password])
+      @user.errors.add(:current_password, "is incorrect")
+      render :edit, status: :unprocessable_entity
+      return
+    end
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -33,5 +43,8 @@ class UsersController < ApplicationController
     end
     def user_params
       params.require(:user).permit(:username, :email_address, :password)
+    end
+    def update_params
+      params.require(:user).permit(:username, :email_address, :password, :password_confirmation, :current_password)
     end
 end
