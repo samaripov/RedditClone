@@ -9,3 +9,4 @@ two:
   username: two
   email_address: two@example.com
   password_digest: <%= BCrypt::Password.create('password123').to_s %>
+

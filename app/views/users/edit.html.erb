@@ -1,14 +1,5 @@
 <h1>Editing <%= @user.username%></h1>
-<% if @user.errors.any? %>
-  <div class="error">
-    <h2><%= pluralize(@user.errors.count, "error") %></h2>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+
 <div class="error">
   
 </div>
