@@ -94,7 +94,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user.password_confirmation = "different_password"
     assert_not @user.valid?
   end
-  
+
   test "password should be valid with all required characters" do
     @user.password = @user.password_confirmation = "Password#1234!"
     assert @user.valid?
