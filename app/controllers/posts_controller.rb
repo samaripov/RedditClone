@@ -6,10 +6,12 @@ class PostsController < ApplicationController
   end
 
   def new
+    @user = current_user
     @post = current_user.posts.build
   end
 
   def create
+    @user = current_user
     @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to root_path
