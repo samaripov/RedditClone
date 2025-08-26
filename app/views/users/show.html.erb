@@ -6,3 +6,11 @@
 <turbo-frame id="creating_a_post">
   <%= link_to "Create Post", new_user_post_path(@user.id)%>
 </turbo-frame>
+
+<div id="posts">
+  <%= render partial: "posts/post", collection: @posts %>
+</div>
+<% @user.posts.reverse.each do |post|%>
+  <h1><%= post.title %></h1>
+  <p><%= post.description %></p>
+<% end %>

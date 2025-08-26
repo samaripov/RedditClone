@@ -1,5 +1,5 @@
 <%= render "errors", post: @post%>
-<%= form_with model: [@user, @post] do |form| %>
+<%= form_with model: [ @user, @post ], data: { turbo_stream: true } do |form| %>
   <%= form.text_field :title, placeholder: "Title"%>
   <%= form.text_field :description, placeholder: "Description"%>
   <%= form.submit "Create Post!"%>

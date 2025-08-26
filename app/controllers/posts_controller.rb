@@ -1,22 +1,23 @@
 class PostsController < ApplicationController
+  before_action :set_user, only: %i[ new create ]
   def index
+    @posts = current_user.posts
   end
 
   def show
   end
 
   def new
-    @user = current_user
     @post = current_user.posts.build
   end
 
   def create
-    @user = current_user
     @post = current_user.posts.build(post_params)
-    if @post.save
-      redirect_to root_path
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post }
+        format.turbo_stream { render turbo_stream: turbo_stream.append("posts", @post) }
+      end
     end
   end
 
@@ -24,6 +25,9 @@ class PostsController < ApplicationController
   end
 
   private
+    def set_user
+      @user = current_user
+    end
     def post_params
       params.require(:post).permit(:title, :description)
     end
