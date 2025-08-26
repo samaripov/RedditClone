@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[ new create ]
-
-  def profile
-    @user = current_user
+  before_action :set_current_user, only: %i[ show edit update ]
+  def show
   end
 
   def new
@@ -29,7 +28,10 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:username, :email_address, :password)
-  end
+    def set_current_user
+      @user = current_user
+    end
+    def user_params
+      params.require(:user).permit(:username, :email_address, :password)
+    end
 end

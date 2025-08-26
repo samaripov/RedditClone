@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "users#profile"
+  root "users#show"
 
   resources :users, only: [ :new, :create, :edit, :update, :destroy ]
 

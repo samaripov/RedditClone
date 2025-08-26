@@ -1,0 +1,4 @@
+<h1>Logged in</h1>
+<%= button_to "Log out", logout_user_path, method: :delete%>
+<h2><%= @user.username %></h2>
+<%= link_to "Update Profile", edit_user_path(@user)%>
