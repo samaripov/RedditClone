@@ -10,4 +10,5 @@ class User < ApplicationRecord
                       length: { minimum: 8, maximum: 70 },
                       password_complexity: true,
                       if: -> { password.present? }
+  has_many :posts
 end

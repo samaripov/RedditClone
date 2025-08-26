@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "posts/index"
+  get "posts/show"
+  get "posts/new"
+  get "posts/edit"
   root "users#show"
 
   resources :users, only: [ :new, :create, :edit, :update, :destroy ]
