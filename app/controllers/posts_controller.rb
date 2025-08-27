@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_user, only: %i[ new create ]
   def index
-    @posts = current_user.posts
+    @user = current_user
+    @global_posts = Post.all
   end
 
   def show
