@@ -41,6 +41,6 @@ class PostsController < ApplicationController
       @user = current_user
     end
     def post_params
-      params.require(:post).permit(:title, :description)
+      params.require(:post).permit(:post_image, :title, :description)
     end
 end
