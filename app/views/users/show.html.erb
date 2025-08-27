@@ -1,3 +1,6 @@
+<% if @user.avatar.attached? %>
+  <%= image_tag @user.avatar, style: "width: 15rem; height: 15rem; object-fit: cover; border-radius: 100rem" %>
+<% end %>
 <h2><%= @user.username %></h2>
 
 <% if @show_actions %>
