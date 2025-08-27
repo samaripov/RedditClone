@@ -1,9 +1,10 @@
 <div id = "post_form_container">
   <%= form_with model: [ @user, post ], data: { turbo_stream: true } do |form| %>
     <%= render "errors", post: post%>
+    <%= form.file_field :post_image %>
     <%= form.text_field :title, placeholder: "Title"%>
     <%= form.text_field :description, placeholder: "Description"%>
     <%= form.submit "Create Post!"%>
   <% end %>
-  <%= link_to "Back", root_path%>
+  <%= link_to "Back", @user%>
 </div>
