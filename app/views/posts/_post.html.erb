@@ -1,8 +1,19 @@
 <% post ||= @post %>
 <div style="border: 1px solid black; padding: 1rem; margin: 1rem;">
-  <div style="display: flex; align-items: center; gap: 0.5rem;">
-    <h1><%= post.title %></h1>
-    <%= link_to "Created by #{post.user.username}", user_path(post.user) %>
-  </div>
+    <%= link_to user_path(post.user) do %>
+      <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <% avatar_size = "3.5rem" %>
+          <% if post.user.avatar.attached? %>
+            <%= image_tag post.user.avatar, style: "width: #{avatar_size}; height: #{avatar_size}; object-fit: cover; border-radius: 100rem" %>
+          <% else %>
+            <%= image_tag "/default_avatar.png", style: "width: #{avatar_size}; height: #{avatar_size}; object-fit: cover; border-radius: 100rem" %>
+          <% end %>
+          <h3>@<%= post.user.username %></h3>
+        </div>
+        <h3>created <%= time_ago_in_words(post.created_at) %> ago</h3>
+      </div>
+    <% end %>
+  <h1><%= post.title %></h1>
   <p><%= post.description %></p>
 </div> 
