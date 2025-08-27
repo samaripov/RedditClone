@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[ new create ]
-  before_action :set_current_user, only: %i[ show edit update ]
+  before_action :set_current_user, only: %i[ edit update ]
   def show
+    @user = User.find(params[:id])
   end
 
   def new

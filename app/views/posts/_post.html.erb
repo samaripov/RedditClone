@@ -1,6 +1,8 @@
 <% post ||= @post %>
-<div style="display: flex;">
-  <h1><%= post.title %></h1>
-  <h2>- Created by <%= post.user.username %></h2>
-</div>
-<p><%= post.description %></p>
+<div style="border: 1px solid black; padding: 1rem; margin: 1rem;">
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <h1><%= post.title %></h1>
+    <%= link_to "Created by #{post.user.username}", user_path(post.user) %>
+  </div>
+  <p><%= post.description %></p>
+</div> 
