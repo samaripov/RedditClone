@@ -9,6 +9,5 @@
   <%= render partial: "posts/post", collection: @posts %>
 </div>
 <% @user.posts.reverse.each do |post|%>
-  <h1><%= post.title %></h1>
-  <p><%= post.description %></p>
+    <%= render "posts/post", post: post %>
 <% end %>

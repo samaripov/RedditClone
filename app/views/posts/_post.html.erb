@@ -1,2 +1,6 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.description %></p>
+<% post ||= @post %>
+<div style="display: flex;">
+  <h1><%= post.title %></h1>
+  <h2>- Created by <%= post.user.username %></h2>
+</div>
+<p><%= post.description %></p>
