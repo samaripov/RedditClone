@@ -14,7 +14,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   # And an invalid one to test failure cases
   def invalid_attributes
-    { title: "four", description: "This is too short." } # Assuming title length minimum is 5
+    { title: "", description: "This is too short." } # Assuming title length minimum is 3
   end
 
   test "should get new" do
@@ -22,18 +22,28 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index and display all posts" do
+    get root_path
+    assert_response :success
+    assert_equal @user, assigns(:user)
+    assert_equal Post.all.count, assigns(:global_posts).count
+  end
   test "should create post with valid parameters" do
-    assert_difference("Post.count") do
-      post user_posts_url(@user), params: { post: valid_attributes }
+    assert_difference("Post.count", 1) do
+      post user_posts_url(@user), params: { post: valid_attributes }, as: :turbo_stream
     end
-    assert_redirected_to root_path
+    assert_response :success
   end
 
   test "should not create post with invalid parameters" do
     assert_no_difference("Post.count") do
-      post user_posts_url(@user), params: { post: invalid_attributes }
+      post user_posts_url(@user), params: { post: invalid_attributes }, as: :turbo_stream
     end
     assert_response :unprocessable_entity
-    assert_template :new
+    assert_select "turbo-stream[action=?][target=?]", "replace", "post_form_container" do
+      assert_select "template" do
+        assert_select "div.field_with_errors"
+      end
+    end
   end
 end

@@ -20,7 +20,7 @@ class PostTest < ActiveSupport::TestCase
     end
 
     test "title should not be too short" do
-      @post.title = "a" * 4
+      @post.title = "a" * 2
       assert_not @post.valid?
     end
 
