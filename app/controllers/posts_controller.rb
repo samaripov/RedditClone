@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_user, only: %i[ new create ]
   def index
     @user = current_user
-    @global_posts = Post.all
+    @global_posts = Post.order(created_at: :desc).page(1).reverse
   end
 
   def show
