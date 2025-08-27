@@ -15,8 +15,15 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post }
-        format.turbo_stream { render turbo_stream: turbo_stream.append("posts", @post) }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.prepend("posts", @post),
+            turbo_stream.replace("creating_a_post", partial: "posts/form", locals: { post: Post.new })
+          ]
+        end
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@post, partial: "posts/form", locals: { post: @post }), status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end

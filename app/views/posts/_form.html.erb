@@ -1,6 +1,9 @@
-<%= render "errors", post: @post%>
-<%= form_with model: [ @user, @post ], data: { turbo_stream: true } do |form| %>
-  <%= form.text_field :title, placeholder: "Title"%>
-  <%= form.text_field :description, placeholder: "Description"%>
-  <%= form.submit "Create Post!"%>
-<% end %>
+<div id = "<%= dom_id(post, :form) %>">
+  <%= form_with model: [ @user, post ], data: { turbo_stream: true } do |form| %>
+    <%= render "errors", post: post%>
+    <%= form.text_field :title, placeholder: "Title"%>
+    <%= form.text_field :description, placeholder: "Description"%>
+    <%= form.submit "Create Post!"%>
+  <% end %>
+  <%= link_to "Back", root_path%>
+</div>
