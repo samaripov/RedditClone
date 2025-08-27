@@ -1,0 +1,6 @@
+<h4>Campfire</h4>
+<% if authenticated? %>
+  <%= link_to "Home", root_path%>
+  <%= link_to "Profile", current_user%>
+  <%= button_to "Log out", logout_user_path, method: :delete%>
+<% end %>
