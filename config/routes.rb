@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "posts#index"
+  get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
   resources :users, only: [ :show, :new, :create, :edit, :update, :destroy ] do
     resources :posts, only: [ :new, :create, :edit, :update, :destroy ]
   end

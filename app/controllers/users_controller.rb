@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[ new create ]
-  before_action :set_current_user, only: %i[ edit update ]
+  before_action :set_current_user, only: %i[ edit update destroy ]
   def show
     @user = User.find(params[:id])
     @show_actions = @user == current_user
@@ -36,7 +36,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm_delete
+    @user = current_user
+  end
+
   def destroy
+    unless @user.authenticate(params[:user][:current_password])
+      @user.errors.add(:current_password, "is incorrect")
+      render :confirm_delete, status: :unprocessable_entity
+      return
+    end
+    @user.destroy
+    reset_session
+    redirect_to root_path
   end
 
   private

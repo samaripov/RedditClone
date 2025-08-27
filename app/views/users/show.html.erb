@@ -11,6 +11,8 @@
   <div id="posts">
     <%= render partial: "posts/post", collection: @posts %>
   </div>
+  <%= link_to "Delete Account", confirm_delete_path(@user) %>
+  
 <% end %>
 
 <% @user.posts.reverse.each do |post|%>

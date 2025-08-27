@@ -1,0 +1,9 @@
+<div id="delete_form">
+  <% user ||= @user%>
+  <h1>Type in current password to delete account.</h1>
+  <%= render "errors", user: user%>
+  <%= form_with model: user, method: :delete do |form|%>
+    <%= form.password_field :current_password, placeholder: "Current password" %>
+    <%= form.submit "Delete account" %>
+  <% end %>
+</div>
