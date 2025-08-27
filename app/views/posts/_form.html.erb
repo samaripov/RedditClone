@@ -1,4 +1,4 @@
-<div id = "<%= dom_id(post, :form) %>">
+<div id = "post_form_container">
   <%= form_with model: [ @user, post ], data: { turbo_stream: true } do |form| %>
     <%= render "errors", post: post%>
     <%= form.text_field :title, placeholder: "Title"%>
