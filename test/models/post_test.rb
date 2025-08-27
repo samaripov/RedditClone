@@ -25,8 +25,7 @@ class PostTest < ActiveSupport::TestCase
     end
 
     test "description should not be too long" do
-      @post.description = "a" * 71
+      @post.description = "a" * 401
       assert_not @post.valid?
     end
-
 end

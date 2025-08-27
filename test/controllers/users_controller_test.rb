@@ -114,12 +114,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user.password = @user.password_confirmation = "PasswordA_!"
     assert_not @user.valid?
   end
-  
+
   test "password should be invalid without a special character" do
     @user.password = @user.password_confirmation = "Password1234"
     assert_not @user.valid?
   end
-  
+
   test "password should be invalid with less than 8 characters" do
     @user.password = @user.password_confirmation = "A1_a"
     assert_not @user.valid?
