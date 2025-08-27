@@ -1,17 +1,11 @@
-<% if @user.avatar.attached? %>
-  <%= image_tag @user.avatar, style: "width: 15rem; height: 15rem; object-fit: cover; border-radius: 100rem" %>
-<% else %>
-  <%= image_tag "/default_avatar.png", style: "width: 15rem; height: 15rem; object-fit: cover; border-radius: 100rem" %>
-<% end %>
-<h2><%= @user.username %></h2>
-
+<%= render @user%>
 <% if @show_actions %>
   <%= link_to "Update Profile", edit_user_path(@user)%>
   <%= render "create_form_link" %>
   <div id="posts">
     <%= render partial: "posts/post", collection: @posts %>
   </div>
-  <%= link_to "Delete Account", confirm_delete_path(@user) %>
+  <%= link_to "Delete Account?", confirm_delete_path(@user) %>
   
 <% end %>
 
