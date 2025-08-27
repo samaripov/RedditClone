@@ -1,13 +1,15 @@
 <h1>Logged in</h1>
 <%= button_to "Log out", logout_user_path, method: :delete%>
 <h2><%= @user.username %></h2>
-<%= link_to "Update Profile", edit_user_path(@user)%>
 
-<%= render "create_form_link" %>
+<% if @show_actions %>
+  <%= link_to "Update Profile", edit_user_path(@user)%>
+  <%= render "create_form_link" %>
+  <div id="posts">
+    <%= render partial: "posts/post", collection: @posts %>
+  </div>
+<% end %>
 
-<div id="posts">
-  <%= render partial: "posts/post", collection: @posts %>
-</div>
 <% @user.posts.reverse.each do |post|%>
     <%= render "posts/post", post: post %>
 <% end %>
