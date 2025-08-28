@@ -14,7 +14,13 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       start_new_session_for @user
-      redirect_to after_authentication_url
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("navbar_frame", partial: "users/navbar")
+          ]
+        end
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -56,7 +62,15 @@ class UsersController < ApplicationController
     end
     @user.destroy
     reset_session
-    redirect_to login_user_path
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.append(
+          "body",
+          "<script>window.location.reload();</script>"
+        )
+      end
+      format.html { redirect_to root_path }
+    end
   end
 
   private

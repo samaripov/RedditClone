@@ -1,13 +1,15 @@
-<div id="delete_form">
-  <% user ||= @user%>
-  <h1>Delete <%= user.username %>?</h1>
-  <p>It will be gone forever! A very long time...</p>
-  <p>Look at your beautiful account!</p>
-  <%= render user %>
-  <%= render "errors", user: user%>
-  <%= form_with model: user, method: :delete do |form|%>
-    <%= form.password_field :current_password, placeholder: "Current password" %>
-    <%= form.submit "Delete account" %>
-  <% end %>
-  <%= link_to "Cancel", @user%>
-</div>
+<turbo-frame id="main_content">
+  <div id="delete_form">
+    <% user ||= @user%>
+    <h1>Delete <%= user.username %>?</h1>
+    <p>It will be gone forever! A very long time...</p>
+    <p>Look at your beautiful account!</p>
+    <%= render user %>
+    <%= render "errors", user: user%>
+    <%= form_with model: user, method: :delete do |form|%>
+      <%= form.password_field :current_password, placeholder: "Current password" %>
+      <%= form.submit "Delete account" %>
+    <% end %>
+    <%= link_to "Cancel", @user%>
+  </div>
+</turbo-frame>

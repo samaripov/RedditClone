@@ -1,4 +1,4 @@
-
-<h1>Sign Up</h1>
-<!-- Renders the create user form -->
-<%= render "form", user: @user, action: "Create" %>
+<turbo-frame id="main_content">
+  <h1>Sign Up</h1>
+  <%= render "form", user: @user, action: "Create" %>
+</turbo-frame>

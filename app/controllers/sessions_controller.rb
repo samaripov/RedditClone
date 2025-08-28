@@ -15,6 +15,13 @@ class SessionsController < ApplicationController
   end
   def destroy
     terminate_session
-    redirect_to new_session_path
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update("navbar_frame", ""),
+          turbo_stream.replace("main_content", html: render_to_string(template: "sessions/new", latout: false))
+        ]
+      end
+    end
   end
 end
