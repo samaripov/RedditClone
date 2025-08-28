@@ -64,12 +64,11 @@ class UsersController < ApplicationController
     reset_session
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.append(
-          "body",
-          "<script>window.location.reload();</script>"
-        )
+        render turbo_stream: [
+          turbo_stream.update("navbar_frame", ""),
+          turbo_stream.replace("main_content", html: render_to_string(template: "sessions/new", latout: false))
+        ]
       end
-      format.html { redirect_to root_path }
     end
   end
 
