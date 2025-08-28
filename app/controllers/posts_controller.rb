@@ -5,8 +5,7 @@ class PostsController < ApplicationController
       redirect_to login_user_path
       return
     end
-    @user = current_user
-    @global_posts = Post.order(created_at: :desc).page(1).per(10).reverse
+    @global_posts = Post.order(created_at: :desc).page(1).per(10)
   end
 
   def show

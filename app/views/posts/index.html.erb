@@ -1,5 +1,6 @@
 <turbo-frame id="main_content">
-  <% @global_posts.reverse.each do |post| %>
-    <%= render "post", post: post%>
+  <% global_posts ||= @global_posts%>
+  <% global_posts.each do |post| %>
+    <%= render post%>
   <% end %>
 </turbo-frame>
