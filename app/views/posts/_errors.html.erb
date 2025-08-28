@@ -1,10 +1,12 @@
-<% if post.errors.any? %>
-  <div class="error">
-    <h2><%= pluralize(post.errors.count, "error") %></h2>
-    <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<div id="post_errors_div">
+  <% if post.errors.any? %>
+    <div class="error">
+      <h2><%= pluralize(post.errors.count, "error") %></h2>
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

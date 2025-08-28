@@ -30,7 +30,7 @@ class PostsController < ApplicationController
       else
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("post_form_container", partial: "posts/form", locals: { post: @post })
+            turbo_stream.replace("post_errors_div", partial: "posts/errors", locals: { post: @post })
           ], status: :unprocessable_entity
         end
       end
