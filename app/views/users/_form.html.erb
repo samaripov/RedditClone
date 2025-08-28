@@ -1,4 +1,7 @@
-<%= render "errors", user: @user%>
+<% user ||= @user%>
+<turbo-frame id="user_errors_div">
+  <%= render "errors", user: user%>
+</turbo-frame>
 
 <%= form_with model: user do |form| %>
   <%= form.file_field :avatar %>

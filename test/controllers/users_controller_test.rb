@@ -22,35 +22,61 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update user with correct current password" do
-    patch user_path(@user), params: {
-      user: {
-        username: "updateduser",
-        email_address: "updated@example.com",
-        password: "newPassword#1234",
-        password_confirmation: "newPassword#1234",
-        current_password: "Password#1234"
-      }
-    }
-    assert_redirected_to user_path(@user)
+  test "does not update when current password is incorrect (renders form in turbo_stream)" do
+    patch user_path(@user),
+      params: {
+        user: {
+          username: "newname",
+          email_address: "new@example.com",
+          current_password: "wrongPassword"
+        }
+      },
+      headers: { "Accept" => "text/vnd.turbo-stream.html" }
+
+    assert_response :unprocessable_entity
+    assert_includes @response.media_type, "vnd.turbo-stream"
+    @user.reload
+    assert_not_equal "newname", @user.username
+  end
+
+  test "successful update returns turbo_stream replacing fragments" do
+    patch user_path(@user),
+          params: {
+            user: {
+              username: "updateduser",
+              email_address: "updated@example.com",
+              password: "newPassword#1234",
+              password_confirmation: "newPassword#1234",
+              current_password: "Password#1234"
+            }
+          },
+          headers: { "Accept" => "text/vnd.turbo-stream.html" }
+
+    assert_response :success
+    assert_includes @response.body, "<turbo-stream"
+    assert_includes @response.body, 'target="user_profile"'
+    assert_includes @response.body, 'target="profile_actions"'
+
     @user.reload
     assert_equal "updateduser", @user.username
     assert_equal "updated@example.com", @user.email_address
   end
 
-  test "should not update user with incorrect current password" do
-    patch user_path(@user), params: {
-      user: {
-        username: "updateduser",
-        email_address: "updated@example.com",
-        password: "newPassword#1234",
-        password_confirmation: "newPassword#1234",
-        current_password: "wrongpassword"
-      }
-    }
+  test "validation failure re-renders form inside turbo_stream with 422" do
+    patch user_path(@user),
+      params: {
+        user: {
+          username: "",
+          email_address: "bad-email",
+          current_password: "Password#1234"
+        }
+      },
+      headers: { "Accept" => "text/vnd.turbo-stream.html" }
+
     assert_response :unprocessable_entity
+    assert_includes @response.media_type, "vnd.turbo-stream"
     @user.reload
-    assert_not_equal "updateduser", @user.username
+    assert_not_equal "", @user.username
   end
 
   test "email address should be present" do

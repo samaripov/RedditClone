@@ -24,15 +24,23 @@ class UsersController < ApplicationController
   end
 
   def update
-    unless @user.authenticate(params[:user][:current_password])
-      @user.errors.add(:current_password, "is incorrect")
-      render :edit, status: :unprocessable_entity
-      return
-    end
-    if @user.update(user_params)
-      redirect_to @user
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if !@user.authenticate(params[:user][:current_password])
+        @user.errors.add(:current_password, "is incorrect")
+        refresh_form(format, "Update")
+      elsif @user.update(user_params)
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(
+              "user_profile",
+              partial: "users/user"
+            ),
+            turbo_stream.replace("profile_actions", partial: "users/profile_actions")
+          ]
+        end
+      else
+        refresh_form(format, "Update")
+      end
     end
   end
 
@@ -52,6 +60,16 @@ class UsersController < ApplicationController
   end
 
   private
+    def refresh_form(format, action)
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "user_errors_div",
+          partial: "users/errors",
+          locals: { user: current_user }
+        ), status: :unprocessable_entity
+      end
+    end
+
     def set_current_user
       @user = current_user
     end
