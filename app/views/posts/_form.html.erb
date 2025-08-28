@@ -1,6 +1,8 @@
 <div id = "post_form_container">
-  <%= form_with model: [ @user, post ], data: { turbo_stream: true } do |form| %>
+  <turbo-frame id="post_errors_frame">
     <%= render "errors", post: post%>
+  </turbo-frame>
+  <%= form_with model: [ @user, post ], data: { turbo_stream: true } do |form| %>
     <%= form.file_field :post_image %>
     <%= form.text_field :title, placeholder: "Title"%>
     <%= form.text_field :description, placeholder: "Description"%>

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if !@user.authenticate(params[:user][:current_password])
         @user.errors.add(:current_password, "is incorrect")
-        refresh_form(format, "Update")
+        refresh_form_errors(format, "Update")
       elsif @user.update(user_params)
         format.turbo_stream do
           render turbo_stream: [
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
           ]
         end
       else
-        refresh_form(format, "Update")
+        refresh_form_errors(format, "Update")
       end
     end
   end
@@ -60,10 +60,10 @@ class UsersController < ApplicationController
   end
 
   private
-    def refresh_form(format, action)
+    def refresh_form_errors(format, action)
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
-          "user_errors_div",
+          "user_errors_frame",
           partial: "users/errors",
           locals: { user: current_user }
         ), status: :unprocessable_entity
