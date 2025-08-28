@@ -4,10 +4,12 @@
   <div id="posts">
     <%= render partial: "posts/post", collection: @posts %>
   </div>
-  
 <% end %>
 
 <% @user.posts.reverse.each do |post|%>
     <%= render "posts/post", post: post %>
 <% end %>
-<%= link_to "Delete Account?", confirm_delete_path(@user) %>
+
+<% if @show_actions %>
+  <%= link_to "Delete Account?", confirm_delete_path(@user) %>
+<% end %>
