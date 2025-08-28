@@ -1,4 +1,5 @@
-<% if user.errors.any? %>
+<div id="user_errors_div">
+  <% if user.errors.any? %>
   <div class="error">
     <h2><%= pluralize(user.errors.count, "error") %></h2>
     <ul>
@@ -7,4 +8,5 @@
       <% end %>
     </ul>
   </div>
-<% end %>
+  <% end %>
+</div>
