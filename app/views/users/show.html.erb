@@ -1,15 +1,17 @@
-<%= render @user%>
-<% if @show_actions %>
-  <%= render "profile_actions" %>
-  <div id="posts">
-    <%= render partial: "posts/post", collection: @posts %>
-  </div>
-<% end %>
+<turbo-frame id="main_content">
+  <%= render @user%>
+  <% if @show_actions %>
+    <%= render "profile_actions" %>
+    <div id="posts">
+      <%= render partial: "posts/post", collection: @posts %>
+    </div>
+  <% end %>
 
-<% @user.posts.reverse.each do |post|%>
-    <%= render "posts/post", post: post %>
-<% end %>
+  <% @user.posts.reverse.each do |post|%>
+      <%= render "posts/post", post: post %>
+  <% end %>
 
-<% if @show_actions %>
-  <%= link_to "Delete Account?", confirm_delete_path(@user) %>
-<% end %>
+  <% if @show_actions %>
+    <%= link_to "Delete Account?", confirm_delete_path(@user) %>
+  <% end %>
+</turbo-frame>
