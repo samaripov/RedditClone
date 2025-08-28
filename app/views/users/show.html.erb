@@ -1,14 +1,13 @@
 <%= render @user%>
 <% if @show_actions %>
-  <%= link_to "Update Profile", edit_user_path(@user)%>
-  <%= render "create_form_link" %>
+  <%= render "profile_actions" %>
   <div id="posts">
     <%= render partial: "posts/post", collection: @posts %>
   </div>
-  <%= link_to "Delete Account?", confirm_delete_path(@user) %>
   
 <% end %>
 
 <% @user.posts.reverse.each do |post|%>
     <%= render "posts/post", post: post %>
 <% end %>
+<%= link_to "Delete Account?", confirm_delete_path(@user) %>

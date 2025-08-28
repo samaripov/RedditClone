@@ -1,7 +1,6 @@
-<h1>Editing <%= @user.username%></h1>
-
-<div class="error">
-  
-</div>
-<!-- Renders the user edit form -->
-<%= render "form", user: @user, action: "Update" %>
+<turbo-frame id="profile_actions">
+  <h1>Editing <%= @user.username%></h1>
+  <!-- Renders the user edit form -->
+  <%= render "form", user: @user, action: "Update" %>
+  <%= link_to "Cancel", @user%>
+</turbo-frame>

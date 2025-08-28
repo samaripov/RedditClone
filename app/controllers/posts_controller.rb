@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_user, only: %i[ new create ]
   def index
+    if current_user.nil?
+      redirect_to login_user_path
+      return
+    end
     @user = current_user
-    @global_posts = Post.order(created_at: :desc).page(1).reverse
+    @global_posts = Post.order(created_at: :desc).page(1).per(10).reverse
   end
 
   def show
@@ -20,7 +24,7 @@ class PostsController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.prepend("posts", @post),
-            turbo_stream.replace("creating_a_post", partial: "users/create_form_link")
+            turbo_stream.replace("profile_actions", partial: "users/profile_actions")
           ]
         end
       else

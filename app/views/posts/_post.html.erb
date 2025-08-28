@@ -1,15 +1,15 @@
 <% post ||= @post %>
-<div style="border: 1px solid black; padding: 1rem; margin: 1rem; border-radius: 0.5rem;">
+<div style="box-shadow: 5px 5px 20px rgb(213, 213, 213); margin: 1rem; border-radius: 1rem;">
     <%= link_to user_path(post.user) do %>
-      <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between">
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between; padding: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: x-large;">
           <% avatar_size = "3.5rem" %>
           <% if post.user.avatar.attached? %>
             <%= image_tag post.user.avatar, style: "width: #{avatar_size}; height: #{avatar_size}; object-fit: cover; border-radius: 100rem" %>
           <% else %>
             <%= image_tag "/default_avatar.png", style: "width: #{avatar_size}; height: #{avatar_size}; object-fit: cover; border-radius: 100rem" %>
           <% end %>
-          <h3>@<%= post.user.username %></h3>
+          <h3 style="margin: 0">@<%= post.user.username %></h3>
         </div>
         <h3>created <%= time_ago_in_words(post.created_at) %> ago</h3>
       </div>
@@ -17,6 +17,8 @@
   <% if post.post_image.attached? %>
     <%= image_tag post.post_image, style: "margin-block: 0.5rem; width: 100%; max-height: 100rem; object-fit: cover;" %>
   <% end %>
-  <h1><%= post.title %></h1>
-  <p><%= post.description %></p>
+  <div style="padding: 1rem;">
+    <h1 style="margin: 0"><%= post.title %></h1>
+    <p><%= post.description %></p>
+  </div>
 </div> 
