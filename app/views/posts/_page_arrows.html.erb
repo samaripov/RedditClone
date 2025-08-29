@@ -1,0 +1,4 @@
+<div style="display: flex; justify-content: center; gap: 1rem;">
+  <%= link_to "Prev Page", posts_path(page: page.to_i-1 > 0 ? page.to_i-1 : 1), data: { turbo_frame: "main_content" } %>
+  <%= link_to "Next Page", posts_path(page: page.to_i+1 < max_page ? page.to_i+1 : max_page), data: { turbo_frame: "main_content" } %>
+</div>

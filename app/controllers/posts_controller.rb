@@ -2,13 +2,8 @@ class PostsController < ApplicationController
   allow_unauthenticated_access only: %i[ index ]
   before_action :set_user, only: %i[ new create ]
   def index
-    page = params[:page] ? params[:page] : 0
-    @global_posts = Post.order(created_at: :desc).page(page).per(10)
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
+    @page = params[:page] ? params[:page] : 1
+    @global_posts = Post.order(created_at: :desc).page(@page).per(10)
   end
 
   def show
