@@ -1,10 +1,7 @@
 class PostsController < ApplicationController
+  allow_unauthenticated_access only: %i[ index ]
   before_action :set_user, only: %i[ new create ]
   def index
-    if current_user.nil?
-      redirect_to login_user_path
-      return
-    end
     @global_posts = Post.order(created_at: :desc).page(1).per(10)
   end
 
