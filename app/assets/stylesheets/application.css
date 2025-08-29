@@ -23,7 +23,6 @@ a {
 
 a:hover {
   color: rgb(20, 104, 229);
-  font-weight: bold;
   border: none;
 }
 
@@ -35,6 +34,7 @@ form {
   display: flex;
 }
 .content {
+  margin-block-start: 1rem;
   width: 100%;
   justify-self: center;
   overflow-y: scroll;
@@ -58,7 +58,7 @@ form {
   font-size: large;
   width: max-content;
   gap: 0.5rem;
-  height: 88vh;
+  height: 90vh;
   background: rgb(0, 140, 255);
 }
 
