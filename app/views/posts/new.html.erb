@@ -1,4 +1,6 @@
 <turbo-frame id="profile_actions">
-  <%= render "form", post: @post%>
-  <%= link_to "Cancel", @user%>
+  <div style="display:flex; flex-direction: column; align-items: center;">
+    <%= render "form", post: @post%>
+    <%= link_to "Cancel", @user%>
+  </div>
 </turbo-frame>

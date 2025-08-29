@@ -25,9 +25,20 @@ a:hover {
   color: rgb(20, 104, 229);
   border: none;
 }
+input {
+  display: block;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-size: larger;
+  border: 1px solid rgb(0, 140, 255);
+  transition: all 0.1s ease-in-out;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
 
 form {
   display: flex;
+  max-width: 30rem;
   flex-direction: column;
 }
 .horizontal {
