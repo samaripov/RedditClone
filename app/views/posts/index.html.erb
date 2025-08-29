@@ -1,8 +1,10 @@
 <turbo-frame id="main_content">
   <div style="display: flex; flex-direction: column; align-items: center;">
     <% global_posts ||= @global_posts%>
-    <% global_posts.each do |post| %>
-      <%= render post%>
-    <% end %>
+    <%= render partial: "posts/post", collection: global_posts, as: :post %>
   </div>
 </turbo-frame>
+
+<%= turbo_frame_tag "pagination_frame", data: { controller: "infinite" } do%>
+  <%= render partial: "posts/load_more", locals: { posts: global_posts } %>
+<% end %>

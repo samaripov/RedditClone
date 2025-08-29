@@ -1,0 +1,3 @@
+<% if posts.next_page %>
+  <%= link_to "Load more", posts_path(page: posts.next_page), data: { turbo_frame: "main_content" }, id: "load-more-link" %>
+<% end %>
