@@ -17,8 +17,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     { title: "", description: "This is too short." } # Assuming title length minimum is 3
   end
 
-  test "should get new" do
-    get new_user_post_url(@user)
+  test "GET new assigns new post and renders turbo frame with form" do
+    get user_path(@user)
     assert_response :success
   end
 

@@ -17,7 +17,8 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("navbar_frame", partial: "users/navbar")
+            turbo_stream.replace("navbar_frame", partial: "users/navbar"),
+            turbo_stream.replace("main_content", html: render_to_string(template: "posts/index", layout: false, locals: { global_posts: Post.order(created_at: :desc).page(1).per(10) }))
           ]
         end
       end
@@ -66,7 +67,7 @@ class UsersController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.update("navbar_frame", ""),
-          turbo_stream.replace("main_content", html: render_to_string(template: "sessions/new", latout: false))
+          turbo_stream.replace("main_content", html: render_to_string(template: "sessions/new", layout: false))
         ]
       end
     end
