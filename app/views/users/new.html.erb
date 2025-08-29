@@ -1,5 +1,7 @@
 <turbo-frame id="main_content">
-  <h1>Sign Up</h1>
-  <%= render "form", user: @user, action: "Create" %>
-  <%= link_to "Cancel", login_user_path %>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <h1>Sign Up</h1>
+    <%= render "form", user: @user, action: "Create" %>
+    <%= link_to "Cancel", login_user_path %>
+  </div>
 </turbo-frame>

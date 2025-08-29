@@ -25,7 +25,15 @@
   </head>
 
   <body>
-    <%= render "users/navbar" %>
-    <%= yield %>
+    <div class="topbar">
+      <img src="/flame.gif" alt="A gif a flame" style="width: 2.5rem; height: 2.5rem;">
+      <h1>Campfire</h1>
+    </div>
+    <div class="horizontal">
+      <%= render "users/navbar" %>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
