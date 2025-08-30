@@ -1,9 +1,9 @@
 <turbo-frame id="main_content">
   <% page = @page ? @page : 1%>
   <% global_posts ||= @global_posts%>
-  <%= paginate global_posts %>
   <div style="display: flex; flex-direction: column; align-items: center;">
+    <%= paginate global_posts %>
     <%= render partial: "posts/post", collection: global_posts, as: :post %>
+    <%= paginate global_posts %>
   </div>
-  <%= paginate global_posts %>
 </turbo-frame>

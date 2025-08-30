@@ -124,3 +124,30 @@ input[type="submit"]:hover {
   color: rgb(0, 140, 255);
   background: white;
 }
+
+.pagination {
+  margin: 1rem;
+  padding: 0.5rem;
+  width: max-content;
+  font-size: x-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination .current {
+  color: white;
+  background: rgb(0, 140, 255);
+  border: 1px solid rgb(0, 140, 255);
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+.pagination a {
+  margin: 0.25rem;
+  padding: 0.5rem;
+  color: rgb(0, 140, 255);
+  background: white;
+  border: 1px solid rgb(0, 140, 255);
+  border-radius: 0.25rem;
+  align-items: center;
+}
