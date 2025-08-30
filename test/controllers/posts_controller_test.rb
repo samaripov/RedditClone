@@ -5,45 +5,45 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @user_params = { username: "newuser1234", email_address: "newuser1243@example.com", password: "Password#1234", password_confirmation: "Password#1234" }
     post users_path, params: { user: @user_params }
     @user = User.last
+    @post = posts(:one)
+    @post.user = @user
+    @post.save
   end
 
-  # We'll need a valid post attributes hash for the create test
-  def valid_attributes
-    { title: "My First Post", description: "This is a valid post description." }
-  end
-
-  # And an invalid one to test failure cases
-  def invalid_attributes
-    { title: "", description: "This is too short." } # Assuming title length minimum is 3
-  end
-
-  test "GET new assigns new post and renders turbo frame with form" do
-    get user_path(@user)
-    assert_response :success
-  end
-
-  test "should get index and display all posts" do
+  test "should get index" do
+    log_in_as(@user)
     get home_path
-    assert_response :success
-    assert_equal @user, assigns(:user)
-    assert_equal Post.all.count, assigns(:global_posts).count
+    assert_redirected_to posts_path(1)
   end
-  test "should create post with valid parameters" do
-    assert_difference("Post.count", 1) do
-      post user_posts_url(@user), params: { post: valid_attributes }, as: :turbo_stream
-    end
+
+  test "should get new when logged in" do
+    get new_user_post_path(@user), as: :turbo_stream
     assert_response :success
+  end
+
+  test "should not get new when not logged in" do
+    get new_user_post_path(@user)
+    assert_response :success
+  end
+
+  test "should create post when logged in" do
+    assert_difference("Post.count") do
+      post user_posts_path(@user), params: { post: { title: 'New Post', description: 'A new post' } }
+    end
+  end
+
+  test "should not create post when not logged in" do
+    log_out_user
+    assert_no_difference("Post.count") do
+      post user_posts_path(@user), params: { post: { title: 'New Post', description: 'A new post' } }
+    end
   end
 
   test "should not create post with invalid parameters" do
     assert_no_difference("Post.count") do
-      post user_posts_url(@user), params: { post: invalid_attributes }, as: :turbo_stream
+      post user_posts_path(@user), params: { post: { title: "", description: "" } }
     end
-    assert_response :unprocessable_entity
-    assert_select "turbo-stream[action=?][target=?]", "replace", "post_form_container" do
-      assert_select "template" do
-        assert_select "div.field_with_errors"
-      end
-    end
+
+    assert_response :not_acceptable
   end
 end

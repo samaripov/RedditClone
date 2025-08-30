@@ -66,6 +66,7 @@ class UsersController < ApplicationController
     @user.destroy
     reset_session
     respond_to do |format|
+      format.html { redirect_to root_path, notice: "Your account has been successfully deleted." }
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.update("navbar_frame", ""),

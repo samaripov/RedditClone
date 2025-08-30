@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  allow_unauthenticated_access only: %i[ index ]
+  allow_unauthenticated_access only: %i[ send_to_page_1 index ]
   before_action :set_user, only: %i[ new create ]
 
   def send_to_page_1
@@ -23,7 +23,6 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         @user = current_user
-        format.html { redirect @post }
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.prepend("posts", @post),
@@ -31,7 +30,6 @@ class PostsController < ApplicationController
           ]
         end
       else
-        format.html { render :new }
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace("post_errors_div", partial: "posts/errors", locals: { post: @post })
