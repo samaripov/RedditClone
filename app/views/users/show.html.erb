@@ -3,14 +3,13 @@
     <%= render @user%>
     <% if @show_actions %>
       <%= render "profile_actions" %>
-      <div id="posts">
-        <%= render partial: "posts/post", collection: @posts %>
-      </div>
     <% end %>
 
-    <% @user.posts.reverse.each do |post|%>
-        <%= render "posts/post", post: post %>
-    <% end %>
+    <%= paginate @posts %>
+    <div id="posts">
+      <%= render partial: "posts/post", collection: @posts %>
+    </div>
+    <%= paginate @posts %>
 
     <% if @show_actions %>
       <%= link_to "Delete Account?", confirm_delete_path(@user), turbo_action: "advance" %>

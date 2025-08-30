@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def index
     @page = params[:page] ? params[:page] : 1
-    @global_posts = Post.order(created_at: :desc).page(@page).per(10)
+    @global_posts = Post.order(created_at: :desc).page params[:page]
   end
 
   def show

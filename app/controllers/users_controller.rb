@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @show_actions = @user == current_user
+    @posts = @user.posts.order(created_at: :desc).page params[:page]
   end
 
   def new
