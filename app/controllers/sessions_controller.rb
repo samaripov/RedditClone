@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def new
     if authenticated?
       respond_to do |format|
-        format.html { redirect_to home_path }
+        format.html { redirect_to posts_path }
         show_logged_in_view(format)
       end
     end

@@ -12,7 +12,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     log_in_as(@user)
-    get home_path
+    get posts_path
     assert_redirected_to posts_path(1)
   end
 
@@ -28,14 +28,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post when logged in" do
     assert_difference("Post.count") do
-      post user_posts_path(@user), params: { post: { title: 'New Post', description: 'A new post' } }
+      post user_posts_path(@user), params: { post: { title: "New Post", description: "A new post" } }
     end
   end
 
   test "should not create post when not logged in" do
     log_out_user
     assert_no_difference("Post.count") do
-      post user_posts_path(@user), params: { post: { title: 'New Post', description: 'A new post' } }
+      post user_posts_path(@user), params: { post: { title: "New Post", description: "A new post" } }
     end
   end
 
