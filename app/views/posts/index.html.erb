@@ -1,4 +1,4 @@
-<turbo-frame id="main_content" data-turbo-action="advance">
+<turbo-frame id="main_content">
   <% page = @page ? @page : 1%>
   <% global_posts ||= @global_posts%>
   <%= render "posts/page_arrows", page: page, max_page: global_posts.total_pages%>

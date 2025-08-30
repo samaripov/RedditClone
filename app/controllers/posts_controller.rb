@@ -23,6 +23,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         @user = current_user
+        format.html { redirect @post }
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.prepend("posts", @post),
@@ -30,6 +31,7 @@ class PostsController < ApplicationController
           ]
         end
       else
+        format.html { render :new }
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace("post_errors_div", partial: "posts/errors", locals: { post: @post })

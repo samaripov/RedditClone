@@ -1,4 +1,4 @@
-<turbo-frame id="main_content" data-turbo-action="advance">
+<turbo-frame id="main_content">
   <div style="display: flex; flex-direction: column; align-items: center;">
     <%= render @user%>
     <% if @show_actions %>
@@ -13,7 +13,7 @@
     <% end %>
 
     <% if @show_actions %>
-      <%= link_to "Delete Account?", confirm_delete_path(@user) %>
+      <%= link_to "Delete Account?", confirm_delete_path(@user), turbo_action: "advance" %>
     <% end %>
   </div>
 </turbo-frame>

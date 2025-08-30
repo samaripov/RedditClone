@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     if @user.save
       start_new_session_for @user
       respond_to do |format|
+        format.html { redirect_to @user }
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace("navbar_frame", partial: "users/navbar"),
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
         @user.errors.add(:current_password, "is incorrect")
         refresh_form_errors(format, "Update")
       elsif @user.update(user_params)
+        format.html
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace(
