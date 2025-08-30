@@ -1,4 +1,4 @@
-<turbo-frame id="main_content">
+<turbo-frame id="main_content" data-turbo-action="advance">
   <div id="delete_form">
     <% user ||= @user%>
     <h1>Delete <%= user.username %>?</h1>

@@ -15,7 +15,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference("User.count", 1) do
       post users_path, params: { user: new_user_params }
     end
-    assert_redirected_to root_path
+    assert_redirected_to home_path
   end
   test "should get edit" do
     get edit_user_path(@user)

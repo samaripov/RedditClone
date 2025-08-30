@@ -1,11 +1,11 @@
-<turbo-frame id="navbar_frame">
+<turbo-frame id="navbar_frame" data-turbo-action="advance">
   <div class="navbar">
-    <%= link_to "Home", root_path, data: { turbo_frame: "main_content" }%>
+    <%= link_to "Home", home_path, data: { turbo_frame: "main_content", turbo_action: 'advance' }%>
     <% if authenticated? %>
-      <%= link_to "Profile", current_user, data: { turbo_frame: "main_content" }%>
+      <%= link_to "Profile", current_user, data: { turbo_frame: "main_content", turbo_action: 'advance' }%>
       <%= button_to "Log out", logout_user_path, method: :delete%>
     <% else %>
-      <%= link_to "Login", login_user_path, data: { turbo_frame: "main_content" }%>
+      <%= link_to "Login", login_user_path, data: { turbo_frame: "main_content", turbo_action: 'advance' }%>
     <% end %>
   </div>
 </turbo-frame>

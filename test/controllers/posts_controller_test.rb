@@ -23,7 +23,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index and display all posts" do
-    get root_path
+    get home_path
     assert_response :success
     assert_equal @user, assigns(:user)
     assert_equal Post.all.count, assigns(:global_posts).count
