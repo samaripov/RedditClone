@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
   allow_unauthenticated_access only: %i[ index ]
   before_action :set_user, only: %i[ new create ]
+
+  def send_to_page_1
+    redirect_to "/home/1"
+  end
+
   def index
     @page = params[:page] ? params[:page] : 1
     @global_posts = Post.order(created_at: :desc).page(@page).per(10)
