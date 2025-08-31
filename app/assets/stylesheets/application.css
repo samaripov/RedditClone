@@ -8,7 +8,13 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
-
+:root {
+  --aqua: #73FBD3;
+  --cyan: #44e5e7;
+  --sky-blue: #59D2FE;
+  --chef-blue: #4A8FE7;
+  --blue: #5C7AFF;
+}
 html {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -18,11 +24,11 @@ body {
 }
 a {
   text-decoration: none;
-  color: rgb(0, 166, 255);
+  color: var(--chef-blue);
 }
 
 a:hover {
-  color: rgb(20, 104, 229);
+  color: var(--sky-blue);
   border: none;
 }
 input {
@@ -30,7 +36,7 @@ input {
   border-radius: 0.5rem;
   text-decoration: none;
   font-size: larger;
-  border: 1px solid rgb(0, 140, 255);
+  border: 1px solid var(--chef-blue);
   transition: all 0.1s ease-in-out;
   padding: 0.5rem;
   margin: 0.5rem;
@@ -41,11 +47,14 @@ form {
   max-width: 30rem;
   flex-direction: column;
 }
+#navbar_frame {
+  background: var(--cyan);
+}
 .horizontal {
   display: flex;
 }
 .content {
-  margin-block-start: 1rem;
+  padding-block-start: 1rem;
   width: 100%;
   justify-self: center;
   overflow-y: scroll;
@@ -58,31 +67,60 @@ form {
   display: flex;
   align-items: center;
   background: white;
-  box-shadow: 5px 5px 30px rgba(188, 188, 188, 0.527);
+  box-shadow: 5px 5px 30px rgba(188, 188, 188, 0.366);
+}
+.spacer {
+  top: 0;
+  color: transparent;
+
 }
 .navbar {
+  top: 10rem;
   color: white;
-  top: 5rem;
   position: sticky;
   padding-inline: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   font-size: x-large;
   width: 15rem;
-  height: 100vh;
-  gap: 0.5rem;
-  background: rgb(62, 164, 248);
+  gap: 0.2rem;
 }
-#avatar {
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar img {
   width: 15rem;
   height: 15rem;
+  object-fit: cover;
+  border-radius: 100rem;
+}
+.navbar > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.navbar .avatar {
+  flex-direction: row;
+  color: white;
+  padding: 0;
+  margin: 0;
+  gap: 0.5rem;
+}
+.navbar .avatar img {
+  height: 4rem;
+  width: 4rem;
+}
+.navbar .avatar h2 {
+  font-size: smaller;
+}
+.navbar .avatar:hover {
+  color: var(--chef-blue);
 }
 .navbar #user_profile {
   justify-self: flex-end;
-}
-.navbar > * {
-  transform: translateY(-5rem);
 }
 .topbar h1 {
   background-image: linear-gradient(
@@ -116,7 +154,7 @@ input[type="submit"] {
   font-weight: bold;
   border: none;
   transition: all 0.15s ease-in-out;
-  padding: 0.5rem 2rem 0.5rem;
+  padding-block: 0.5rem;
   margin: 0rem;
 }
 .navbar a svg,
@@ -128,12 +166,12 @@ input[type="submit"] {
 .navbar button {
   fill: white;
   color: white;
-  background: rgb(0, 140, 255);
+  background: var(--chef-blue);
 }
 .navbar a:hover,
 .navbar button:hover {
-  fill: rgb(0, 140, 255);
-  color: rgb(0, 140, 255);
+  fill: var(--chef-blue);
+  color: var(--chef-blue);
   border: 1px solid white;
   background: white;
   transform: translateY(-0.4rem) scale(105%);
@@ -144,13 +182,13 @@ input[type="submit"] {
 button,
 input[type="submit"] {
   color: white;
-  background: rgb(0, 140, 255);
-  border: 1px solid rgb(0, 140, 255);
+  background: var(--chef-blue);
+  border: 1px solid var(--chef-blue);
 }
 .button:hover,
 button:hover,
 input[type="submit"]:hover {
-  color: rgb(0, 140, 255);
+  color: var(--chef-blue);
   background: white;
 }
 
@@ -165,8 +203,8 @@ input[type="submit"]:hover {
 }
 .pagination .current {
   color: white;
-  background: rgb(0, 140, 255);
-  border: 1px solid rgb(0, 140, 255);
+  background: var(--chef-blue);
+  border: 1px solid var(--chef-blue);
   margin: 0.25rem;
   padding: 0.5rem;
   border-radius: 0.25rem;
@@ -174,9 +212,9 @@ input[type="submit"]:hover {
 .pagination a {
   margin: 0.25rem;
   padding: 0.5rem;
-  color: rgb(0, 140, 255);
+  color: var(--chef-blue);
   background: white;
-  border: 1px solid rgb(0, 140, 255);
+  border: 1px solid var(--chef-blue);
   border-radius: 0.25rem;
   align-items: center;
 }
