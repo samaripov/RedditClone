@@ -1,5 +1,5 @@
 <turbo-frame id="main_content">
-  <div id="delete_form">
+  <div id="delete_form" style="display: flex; flex-direction: column; align-items: center;">
     <% user ||= @user%>
     <h1>Delete <%= user.username %>?</h1>
     <p>It will be gone forever! A very long time...</p>
@@ -10,6 +10,6 @@
       <%= form.password_field :current_password, placeholder: "Current password" %>
       <%= form.submit "Delete account" %>
     <% end %>
-    <%= link_to "Cancel", @user %>
+    <%= link_to "Cancel", @user, data: { turbo_action: "advance" } %>
   </div>
 </turbo-frame>
