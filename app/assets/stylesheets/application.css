@@ -61,6 +61,8 @@ form {
   box-shadow: 5px 5px 30px rgba(188, 188, 188, 0.527);
 }
 .navbar {
+  color: white;
+  text-align: center;
   top: 5rem;
   position: sticky;
   display: flex;
@@ -71,6 +73,17 @@ form {
   height: 100vh;
   gap: 0.5rem;
   background: rgb(0, 140, 255);
+}
+#avatar {
+  width: 15rem; 
+  height: 15rem;
+}
+.navbar #avatar {
+  width: 8rem; 
+  height: 8rem;
+}
+.navbar #user_profile {
+  justify-self: flex-end;
 }
 .navbar > * {
   transform: translateY(-5rem);

@@ -1,9 +1,9 @@
 <div id="user_profile" style="display: flex; flex-direction: column; align-items: center;">
   <% user ||= @user%>
   <% if user.avatar.attached? %>
-    <%= image_tag user.avatar, style: "width: 15rem; height: 15rem; object-fit: cover; border-radius: 100rem" %>
+    <%= image_tag user.avatar, id: "avatar", style: " object-fit: cover; border-radius: 100rem" %>
   <% else %>
-    <%= image_tag "/default_avatar.png", style: "width: 15rem; height: 15rem; object-fit: cover; border-radius: 100rem" %>
+    <%= image_tag "/default_avatar.png", id: "avatar", style: "object-fit: cover; border-radius: 100rem" %>
   <% end %>
   <h2><%= user.username %></h2>
 </div>
