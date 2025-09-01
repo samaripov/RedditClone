@@ -1,6 +1,8 @@
 <turbo-frame id="main_content">
   <div style="display: flex; flex-direction: column; align-items: center;">
-    <%= render @user%>
+    <turbo-frame id="profile_avatar">
+      <%= render @user%>
+    </turbo-frame>
     <% if @show_actions %>
       <%= render "profile_actions" %>
     <% end %>

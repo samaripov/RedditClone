@@ -42,7 +42,7 @@ class UsersController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace(
-              "user_profile",
+              "profile_avatar",
               partial: "users/user"
             ),
             turbo_stream.replace("profile_actions", partial: "users/profile_actions")
