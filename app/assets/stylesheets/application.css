@@ -47,9 +47,6 @@ form {
   max-width: 30rem;
   flex-direction: column;
 }
-#navbar_frame {
-  background: var(--cyan);
-}
 .horizontal {
   display: flex;
 }
@@ -58,6 +55,11 @@ form {
   width: 100%;
   justify-self: center;
   overflow-y: scroll;
+  background-image: url("/pexels-vladbagacian-1061640.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 10% 50%;
+  background-repeat: no-repeat;
 }
 .topbar {
   z-index: 1;
