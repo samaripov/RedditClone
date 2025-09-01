@@ -70,6 +70,7 @@ form {
 .content {
   padding-block-start: 1rem;
   width: 100%;
+  padding-inline: 20%;
   justify-self: center;
   overflow-y: scroll;
   background-image: url("/pexels-souvenirpixels-1539225.jpg");
@@ -161,7 +162,8 @@ form {
 .navbar a,
 .button,
 button,
-input[type="submit"] {
+input[type="submit"],
+.pagination span{
   width: 100%;
   text-align: center;
   display: flex;
@@ -205,10 +207,15 @@ input[type="submit"]:hover {
 
 .button,
 button,
-input[type="submit"] {
+input[type="submit"],
+.pagination span:hover {
   color: white;
   background: var(--chef-blue);
   border: 1px solid var(--chef-blue);
+  transform: none;
+}
+.pagination span:hover a {
+  color: white;
 }
 .button:hover,
 button:hover,
@@ -218,28 +225,23 @@ input[type="submit"]:hover {
 }
 
 .pagination {
+  width: 100%;
   margin: 1rem;
-  padding: 0.5rem;
-  width: max-content;
-  font-size: x-large;
   display: flex;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
 }
-.pagination .current {
-  color: white;
-  background: var(--chef-blue);
-  border: 1px solid var(--chef-blue);
-  margin: 0.25rem;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-}
-.pagination a {
-  margin: 0.25rem;
-  padding: 0.5rem;
+.pagination span {
+  padding: 0rem;
+  display: flex;
   color: var(--chef-blue);
   background: white;
-  border: 1px solid var(--chef-blue);
   border-radius: 0.25rem;
   align-items: center;
+  border: 1px solid white;
+}
+.pagination a {
+  padding: 0.25rem;
+  flex: 1;
 }
