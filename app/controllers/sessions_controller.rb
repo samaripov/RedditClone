@@ -21,12 +21,14 @@ class SessionsController < ApplicationController
       redirect_to new_session_path, alert: "Try another email address or password."
     end
   end
+
   def destroy
     terminate_session
+    Current.session = nil
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update("navbar_frame", ""),
+          turbo_stream.replace("navbar_frame", partial: "users/navbar"),
           turbo_stream.replace("main_content", html: render_to_string(template: "sessions/new", latout: false))
         ]
       end
