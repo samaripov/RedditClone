@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "sessions#new"
+  root "posts#index"
   get "/home", to: "posts#index", as: "posts"
   get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
   resources :users, only: [ :show, :new, :create, :edit, :update, :destroy ] do
