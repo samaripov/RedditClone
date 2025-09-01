@@ -89,9 +89,9 @@ form {
   align-self: center;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1600px) {
   .content {
-    padding-inline: 5%;
+    padding-inline: 20%;
   }
   .navbar .avatar img {
     width: 10rem;
@@ -100,12 +100,12 @@ form {
 }
 
 @media only screen and (max-width: 1000px) {
+  .content {
+    padding-inline: 5%;
+  }
   .post,
   .post .user h4 {
-    font-size: 70%;
-  }
-  .post div.title {
-    padding: 0.35rem;
+    font-size: 90%;
   }
   .post .title img {
     height: 4rem;
@@ -320,6 +320,9 @@ input[type="submit"]:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.35rem;
+}
+.post div {
   padding: 1rem;
 }
 .post .user {
