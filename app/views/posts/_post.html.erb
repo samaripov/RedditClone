@@ -1,13 +1,12 @@
 <% post ||= @post %>
-<div style="background: white;box-shadow: 5px 5px 20px rgba(123, 123, 123, 0.54); margin: 1rem; border-radius: 1rem; max-width: 40rem; min-width: 40rem;">
+<div class="post">
     <%= link_to user_path(post.user), data: { turbo_action: "advance" } do %>
-      <div style="display: flex; align-items: center; gap: 10rem; justify-content: space-between; padding: 1rem;">
-        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: x-large;">
-          <% avatar_size = "3.5rem" %>
+      <div class="title">
+        <div class="user">
           <% if post.user.avatar.attached? %>
-            <%= image_tag post.user.avatar, style: "width: #{avatar_size}; height: #{avatar_size}; object-fit: cover; border-radius: 100rem" %>
+            <%= image_tag post.user.avatar %>
           <% else %>
-            <%= image_tag "/default_avatar.png", style: "width: #{avatar_size}; height: #{avatar_size}; object-fit: cover; border-radius: 100rem" %>
+            <%= image_tag "/default_avatar.png" %>
           <% end %>
           <h4 style="margin: 0">@<%= post.user.username %></h4>
         </div>
@@ -15,7 +14,7 @@
       </div>
     <% end %>
   <% if post.post_image.attached? %>
-    <%= image_tag post.post_image, style: "margin-block: 0.5rem; width: 100%; max-height: 100rem; object-fit: cover;" %>
+    <%= image_tag post.post_image %>
   <% end %>
   <div style="padding: 1rem;">
     <h1 style="margin: 0"><%= post.title %></h1>

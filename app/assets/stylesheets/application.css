@@ -9,6 +9,7 @@
  * Consider organizing styles into separate files for maintainability.
  */
 :root {
+  --avatar-size-in-posts: 3.5rem;
   --aqua: #73fbd3;
   --cyan: #44e5e7;
   --sky-blue: #59d2fe;
@@ -18,7 +19,7 @@
 html {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    height: 100%;
+  height: 100%;
 }
 body {
   margin: 0;
@@ -63,14 +64,14 @@ form {
   padding: 1rem;
 }
 .horizontal {
+  top: 10rem;
   display: flex;
-  height: 95%;
 }
 
 .content {
   padding-block-start: 1rem;
   width: 100%;
-  padding-inline: 20%;
+  padding-inline: 35%;
   justify-self: center;
   overflow-y: scroll;
   background-image: url("/pexels-souvenirpixels-1539225.jpg");
@@ -79,10 +80,42 @@ form {
   background-position: 10% 50%;
   background-repeat: no-repeat;
 }
+
+.navbar img {
+  border-radius: 1rem;
+  height: 10rem;
+  width: 10rem;
+  justify-self: center;
+  align-self: center;
+}
+
+@media only screen and (max-width: 1200px) {
+  .content {
+    padding-inline: 5%;
+  }
+  .navbar .avatar img {
+    width: 10rem;
+    height: 10rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .post,
+  .post .user h4 {
+    font-size: 70%;
+  }
+  .post div.title {
+    padding: 0.35rem;
+  }
+  .post .title img {
+    height: 4rem;
+    width: 4rem;
+  }
+}
 .topbar {
   z-index: 1;
   top: 0;
-  position: sticky;
+  position: fixed;
   width: 100%;
   display: flex;
   align-items: center;
@@ -94,17 +127,38 @@ form {
   color: transparent;
 }
 .navbar {
-  top: 10rem;
+  top: 7rem;
   color: white;
   position: sticky;
-  padding-inline: 1rem;
+  padding-inline: 0.2rem;
   display: flex;
   flex-direction: column;
   font-size: x-large;
-  width: 15rem;
+  width: min-content;
   gap: 0.2rem;
 }
-
+.navbar span {
+    display: none;
+  }
+  .navbar .avatar img {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+  }
+  .navbar .button{ 
+    width: min-content;
+    padding: 0.5rem;
+  }
+  .navbar div {
+    padding: 0;
+    width: 3rem;
+  }
+.navbar div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .avatar {
   color: white;
   display: flex;
@@ -122,25 +176,30 @@ form {
   flex-direction: column;
   gap: 1rem;
 }
-.navbar .avatar {
+.navbar .user {
   background: transparent;
-  flex-direction: row;
+  border: none;
   padding: 0;
-  margin: 0;
-  gap: 0.5rem;
 }
-.navbar .avatar img {
-  height: 4rem;
-  width: 4rem;
+.navbar .user:hover {
+  background: transparent;
+  border: none;
 }
-.navbar .avatar h2 {
-  font-size: smaller;
+#user_profile {
+  padding: 0;
+  background: transparent;
+  transition: all 0.15s ease-in-out;
 }
-.navbar .avatar:hover {
-  color: var(--chef-blue);
+#user_profile:hover {
+  transform: translateY(-0.4rem) scale(105%);
 }
-.navbar #user_profile {
-  justify-self: flex-end;
+.user .avatar h2 {
+  visibility: collapse;
+}
+.navbar a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .topbar h1 {
   background-image: linear-gradient(
@@ -163,13 +222,11 @@ form {
 .button,
 button,
 input[type="submit"],
-.pagination span{
-  width: 100%;
+.pagination span {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
   border-radius: 0.5rem;
   font-size: larger;
   text-decoration: none;
@@ -177,12 +234,13 @@ input[type="submit"],
   border: none;
   transition: all 0.15s ease-in-out;
   padding-block: 0.5rem;
+  width: 100%;
   margin: 0rem;
 }
 a svg,
 .button svg,
 button svg,
-input[type="submit"] svg{
+input[type="submit"] svg {
   height: 2rem;
   width: min-content;
 }
@@ -237,11 +295,42 @@ input[type="submit"]:hover {
   display: flex;
   color: var(--chef-blue);
   background: white;
-  border-radius: 0.25rem;
+  border-radius: 1rem;
   align-items: center;
   border: 1px solid white;
 }
 .pagination a {
   padding: 0.25rem;
   flex: 1;
+}
+.post {
+  background: white;
+  box-shadow: 5px 5px 20px rgba(123, 123, 123, 0.54);
+  margin: 1rem;
+  border-radius: 1rem;
+  min-width: 100%;
+}
+.post > img {
+  margin-block: 0.5rem;
+  width: 100%;
+  max-height: 35rem;
+  object-fit: cover;
+}
+.post .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.post .user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: x-large;
+}
+.post .user img {
+  width: var(--avatar-size-in-posts);
+  height: var(--avatar-size-in-posts);
+  object-fit: cover;
+  border-radius: 100rem;
 }
