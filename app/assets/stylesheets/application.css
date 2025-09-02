@@ -344,6 +344,9 @@ input[type="submit"]:hover {
 .horizontal-div > * {
   flex: 1;
 }
+.horizontal-div svg {
+  height: 2.35rem;
+}
 .horizontal-div button {
   gap: 0.5rem;
 }
