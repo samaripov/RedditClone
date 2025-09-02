@@ -1,2 +1,4 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<turbo-frame id="main_content">
+  <%= render @post %>
+  <%= button_to "Delete", user_post_path(current_user, @post), method: :delete, data: {turbo_confirm: "Are you sure you want to delete \"#{@post.title}\"?"}%>
+</turbo-frame>

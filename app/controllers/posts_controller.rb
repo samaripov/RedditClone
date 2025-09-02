@@ -44,6 +44,28 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = current_user.posts.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace("main_content", html: render_to_string(template: "posts/edit", layout: false))
+        ]
+      end
+    end
+  end
+
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    @post.destroy!
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace("main_content", html: render_to_string(template: "posts/index", layout: false, locals: { global_posts: Post.order(created_at: :desc).page(1).per(10) }))
+        ]
+      end
+    end
   end
 
   private
