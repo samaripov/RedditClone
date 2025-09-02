@@ -1,26 +1,29 @@
 <% post ||= @post %>
 <div class="post">
-    <%= link_to user_path(post.user), data: { turbo_action: "advance" } do %>
-      <div class="title">
-        <div class="user">
-          <% if post.user.avatar.attached? %>
-            <%= image_tag post.user.avatar %>
-          <% else %>
-            <%= image_tag "/default_avatar.png" %>
-          <% end %>
-          <h4 style="margin: 0">@<%= post.user.username %></h4>
-        </div>
-        <p><%= time_ago_in_words(post.created_at) %> ago</p>
+  <%= link_to user_path(post.user), data: { turbo_action: "advance" } do %>
+    <div class="title">
+      <div class="user">
+        <% if post.user.avatar.attached? %>
+          <%= image_tag post.user.avatar %>
+        <% else %>
+          <%= image_tag "/default_avatar.png" %>
+        <% end %>
+        <h4>@<%= post.user.username %></h4>
       </div>
-    <% end %>
+      <p><%= time_ago_in_words(post.created_at) %> ago</p>
+    </div>
+  <% end %>
   <% if post.post_image.attached? %>
     <%= image_tag post.post_image %>
   <% end %>
-    <div>
-      <h1 style="margin: 0"><%= post.title %></h1>
-      <p><%= post.description %></p>
-      <turbo-frame id="post-<%= post.id %>-likes">
-        <%= render "post_likes", post: post%>
-      </turbo-frame>
+  <div class="div-padding">
+    <div class="space-between">
+      <h2><%= post.title %></h2>
+      <p>Likes</p>
     </div>
+    <p><%= post.description %></p>
+    <turbo-frame id="post-<%= post.id %>-likes">
+      <%= render "posts/post_likes", post: post %>
+    </turbo-frame>
+  </div>
 </div> 

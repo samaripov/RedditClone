@@ -29,7 +29,9 @@ a {
   text-decoration: none;
   color: var(--chef-blue);
 }
-
+h2, h3, h4, h5{
+  margin: 0;
+}
 a:hover {
   color: var(--sky-blue);
   border: none;
@@ -63,11 +65,16 @@ form {
   justify-self: center;
   padding: 1rem;
 }
-.horizontal {
+.horizontal-nav {
   top: 10rem;
   display: flex;
 }
-
+div.space-between {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .content {
   padding-block-start: 1rem;
   width: 100%;
@@ -322,8 +329,23 @@ input[type="submit"]:hover {
   justify-content: space-between;
   padding: 0.35rem;
 }
-.post div {
-  padding: 1rem;
+.post .div-padding {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.div-padding > * {
+  width: 100%;
+}
+.horizontal-div {
+  display: flex;
+}
+.horizontal-div > * {
+  flex: 1;
+}
+.horizontal-div button {
+  gap: 0.5rem;
 }
 .post .user {
   display: flex;
