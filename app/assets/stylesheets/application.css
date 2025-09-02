@@ -29,7 +29,10 @@ a {
   text-decoration: none;
   color: var(--chef-blue);
 }
-h2, h3, h4, h5{
+h2,
+h3,
+h4,
+h5 {
   margin: 0;
 }
 a:hover {
@@ -145,21 +148,21 @@ div.space-between {
   gap: 0.2rem;
 }
 .navbar span {
-    display: none;
-  }
-  .navbar .avatar img {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 50%;
-  }
-  .navbar .button{ 
-    width: min-content;
-    padding: 0.5rem;
-  }
-  .navbar div {
-    padding: 0;
-    width: 3rem;
-  }
+  display: none;
+}
+.navbar .avatar img {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+}
+.navbar .button {
+  width: min-content;
+  padding: 0.5rem;
+}
+.navbar div {
+  padding: 0;
+  width: 3rem;
+}
 .navbar div {
   display: flex;
   flex-direction: column;
@@ -351,8 +354,11 @@ input[type="submit"]:hover {
 .horizontal-div svg {
   height: 2.35rem;
 }
-.horizontal-div button {
+.horizontal-div button, .horizontal-div .button {
   gap: 0.5rem;
+  background: white;
+  border: 1px solid white;
+  color: var(--chef-blue);
 }
 .post .user {
   display: flex;

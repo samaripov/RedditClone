@@ -8,12 +8,20 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = current_user.posts.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace("main_content", html: render_to_string(template: "posts/show", layout: false))
+        ]
+      end
+    end
   end
 
   def new
     @post = current_user.posts.build
   end
-
   def create
     @post = current_user.posts.build(post_params)
     respond_to do |format|
