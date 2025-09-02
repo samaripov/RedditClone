@@ -344,6 +344,10 @@ input[type="submit"]:hover {
 .horizontal-div > * {
   flex: 1;
 }
+.horizontal-div h3 {
+  margin: 0;
+  color: black;
+}
 .horizontal-div svg {
   height: 2.35rem;
 }

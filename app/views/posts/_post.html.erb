@@ -10,17 +10,14 @@
         <% end %>
         <h4>@<%= post.user.username %></h4>
       </div>
-      <p><%= time_ago_in_words(post.created_at) %> ago</p>
+    <p style="padding-inline: 1rem;"><%= time_ago_in_words(post.created_at) %> ago</p>
     </div>
   <% end %>
   <% if post.post_image.attached? %>
     <%= image_tag post.post_image %>
   <% end %>
   <div class="div-padding">
-    <div class="space-between">
-      <h2><%= post.title %></h2>
-      <p>Likes</p>
-    </div>
+    <h2><%= post.title %></h2>
     <p><%= post.description %></p>
     <turbo-frame id="post-<%= post.id %>-likes">
       <%= render "posts/post_likes", post: post %>
