@@ -58,6 +58,16 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def like_post
+    @post = Post.find(params[:id])
+    current_user.liked_posts.create(post: @post)
+  end
+
+  def unlike_post
+    @post = Post.find(params[:id])
+    current_user.liked_posts.find_by(post: @post)&.destroy
+  end
+
   def destroy
     unless @user.authenticate(params[:user][:current_password])
       @user.errors.add(:current_password, "is incorrect")

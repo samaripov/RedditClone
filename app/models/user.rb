@@ -15,4 +15,6 @@ class User < ApplicationRecord
                       password_complexity: true,
                       if: -> { password.present? }
   has_many :posts
+  has_many :liked_posts
+  has_many :favourite_posts, through: :liked_posts, source: :post
 end
