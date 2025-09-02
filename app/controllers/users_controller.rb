@@ -38,7 +38,6 @@ class UsersController < ApplicationController
         @user.errors.add(:current_password, "is incorrect")
         refresh_form_errors(format, "Update")
       elsif @user.update(user_params)
-        format.html
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace(
@@ -60,12 +59,21 @@ class UsersController < ApplicationController
 
   def like_post
     @post = Post.find(params[:id])
-    current_user.liked_posts.create(post: @post)
+    unless current_user.liked_posts.exists?(post: @post)
+      liked_post = current_user.liked_posts.create(post: @post)
+      refresh_likes
+      unless liked_post.persisted?
+        flash[:alert] = "Unable to like the post. Please try again."
+      end
+    end
   end
 
   def unlike_post
     @post = Post.find(params[:id])
-    current_user.liked_posts.find_by(post: @post)&.destroy
+    if current_user.liked_posts.exists?(post: @post)
+      current_user.liked_posts.find_by(post: @post)&.destroy
+      refresh_likes
+    end
   end
 
   def destroy
@@ -76,18 +84,22 @@ class UsersController < ApplicationController
     end
     @user.destroy
     reset_session
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "Your account has been successfully deleted." }
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.update("navbar_frame", ""),
-          turbo_stream.replace("main_content", html: render_to_string(template: "sessions/new", layout: false))
-        ]
-      end
-    end
   end
 
   private
+    def refresh_likes
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(
+              "post-#{@post.id}-likes",
+              partial: "posts/post_likes",
+              locals: { post: @post }
+            )
+          ]
+        end
+      end
+    end
     def refresh_form_errors(format, action)
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(

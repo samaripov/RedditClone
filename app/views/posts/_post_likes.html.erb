@@ -1,0 +1,10 @@
+<turbo-frame id="post-<%= post.id %>-likes">
+  <div>
+    <p>Likes: <%= post.user_likes_count %></p>
+    <% if current_user_liked?(post) %>
+      <%= button_to "Unlike", unlike_post_path(post), method: :delete %>
+    <% else %>
+      <%= button_to "Like", like_post_path(post), method: :post %>
+    <% end %>
+  </div>
+</turbo-frame>

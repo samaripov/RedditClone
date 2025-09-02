@@ -16,11 +16,11 @@
   <% if post.post_image.attached? %>
     <%= image_tag post.post_image %>
   <% end %>
-  <div>
-    <h1 style="margin: 0"><%= post.title %></h1>
-    <p><%= post.description %></p>
-    <p>Likes: <%= post.user_likes_count %></p>
-    <%= button_to "Like", like_post_path(post), method: :post%>
-    <%= button_to "Unlike", unlike_post_path(post), method: :delete%>
-  </div>
+    <div>
+      <h1 style="margin: 0"><%= post.title %></h1>
+      <p><%= post.description %></p>
+      <turbo-frame id="post-<%= post.id %>-likes">
+        <%= render "post_likes", post: post%>
+      </turbo-frame>
+    </div>
 </div> 
