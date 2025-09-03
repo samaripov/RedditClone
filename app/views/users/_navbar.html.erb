@@ -1,6 +1,6 @@
 <turbo-frame id="navbar_frame">
   <div class="navbar">
-    <% if authenticated? %>
+    <% if authenticated? and not current_user.nil?%>
       <div>
         <%= link_to current_user, class: "user", data: { turbo_action: "advance", turbo_frame: "main_content" } do %>
           <%= render current_user%>
