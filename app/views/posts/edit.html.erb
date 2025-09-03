@@ -1,4 +1,9 @@
 <turbo-frame id="main_content">
+  <div class="pagination">
+    <%= link_to @user do %>
+      <span style="padding-block: 0.5rem;">Cancel</span>
+    <% end %>
+  </div>
   <% post ||= @post %>
   <div class="post">
     <%= link_to "#" do %>
