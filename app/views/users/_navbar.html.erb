@@ -16,8 +16,7 @@
       </div>
     <% else %>
       <%= link_to "Home", posts_path, class: "button", data: { turbo_action: "advance", turbo_frame: "main_content" } %>
-      <%= link_to "Login", login_user_path, class: "button", data: { turbo_action: "advance", turbo_frame: "main_content" } %>
+      <%= link_to "Login", new_session_path, class: "button", data: { turbo_action: "advance", turbo_frame: "main_content" } %>
     <% end %>
-    
   </div>
 </turbo-frame>

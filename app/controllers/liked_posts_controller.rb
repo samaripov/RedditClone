@@ -1,13 +1,14 @@
 class LikedPostsController < ApplicationController
+  before_action :require_login
   def like_post
     @post = Post.find(params[:id])
     unless current_user.liked_posts.exists?(post: @post)
       liked_post = current_user.liked_posts.create(post: @post)
-      refresh_likes
       unless liked_post.persisted?
         flash[:alert] = "Unable to like the post. Please try again."
       end
     end
+    refresh_likes
   end
 
   def unlike_post
@@ -19,6 +20,12 @@ class LikedPostsController < ApplicationController
   end
 
   private
+    def require_login
+      unless current_user
+        redirect_to new_session_path
+      end
+    end
+
     def refresh_likes
       respond_to do |format|
         format.turbo_stream do
