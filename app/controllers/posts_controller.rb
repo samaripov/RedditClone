@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   allow_unauthenticated_access only: %i[ index ]
-  before_action :set_user, only: %i[ new create ]
+  before_action :set_user, only: %i[ new edit update create ]
 
   def index
     @page = params[:page] ? params[:page] : 1
@@ -54,7 +54,28 @@ class PostsController < ApplicationController
       end
     end
   end
-
+  def update
+    @post = current_user.posts.find(params[:id])
+    if @post.update(post_params)
+      respond_to do |format|
+        format.html
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("main_content", html: render_to_string(template: "posts/show", layout: false))
+          ]
+        end
+      end
+    else
+      respond_to do |format|
+        format.html
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("main_content", html: render_to_string(template: "posts/edit", layout: false))
+          ]
+        end
+      end
+    end
+  end
   def destroy
     @post = current_user.posts.find(params[:id])
     @post.destroy!

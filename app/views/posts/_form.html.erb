@@ -1,9 +1,11 @@
 <div id = "post_form_container">
   <%= render "errors", post: post%>
   <%= form_with model: [ @user, post ] do |form| %>
-    <%= form.file_field :post_image %>
+    <% unless action == "Update" %>
+      <%= form.file_field :post_image %>
+    <% end %>
     <%= form.text_field :title, placeholder: "Title"%>
-    <%= form.text_field :description, placeholder: "Description"%>
-    <%= form.submit "Create Post!"%>
+    <%= form.text_area :description, placeholder: "Description"%>
+    <%= form.submit "#{action} post" %>
   <% end %>
 </div>
