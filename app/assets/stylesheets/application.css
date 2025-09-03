@@ -81,7 +81,7 @@ div.space-between {
 .content {
   padding-block-start: 1rem;
   width: 100%;
-  padding-inline: 40%;
+  padding-inline: 30rem;
   justify-self: center;
   overflow-y: scroll;
   background-image: url("/pexels-souvenirpixels-1539225.jpg");
@@ -99,9 +99,9 @@ div.space-between {
   align-self: center;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1400px) {
   .content {
-    padding-inline: 30%;
+    padding-inline: 10rem;
   }
   .navbar .avatar img {
     width: 10rem;
@@ -111,7 +111,7 @@ div.space-between {
 
 @media only screen and (max-width: 1000px) {
   .content {
-    padding-inline: 5%;
+    padding-inline: 1rem;
   }
   .post,
   .post .user h4 {
