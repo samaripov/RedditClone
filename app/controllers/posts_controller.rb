@@ -27,12 +27,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         @user = current_user
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.prepend("posts", @post),
-            turbo_stream.replace("profile_actions", partial: "users/profile_actions")
-          ]
-        end
+        format.html { redirect_to root_path }
       else
         format.turbo_stream do
           render turbo_stream: [

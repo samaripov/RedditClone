@@ -11,7 +11,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    log_in_as(@user)
     get posts_path
     assert_response :success
   end

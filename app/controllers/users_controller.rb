@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :set_current_user, only: %i[ edit update destroy ]
   def show
     @user = User.find(params[:id])
-    @show_actions = @user == current_user
     @posts = @user.posts.order(created_at: :desc).page params[:page]
   end
 

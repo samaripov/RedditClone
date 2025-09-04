@@ -3,9 +3,6 @@
     <turbo-frame id="profile_avatar">
       <%= render @user%>
     </turbo-frame>
-    <% if @show_actions %>
-      <%= render "profile_actions" %>
-    <% end %>
 
     <%= paginate @posts %>
     <div id="posts" class="center_content">

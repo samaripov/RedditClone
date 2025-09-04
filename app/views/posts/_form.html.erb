@@ -1,6 +1,6 @@
 <div id = "post_form_container">
   <%= render "errors", post: post%>
-  <%= form_with model: [ @user, post ] do |form| %>
+  <%= form_with model: [ @user, post ], data: { turbo_action: "advance" } do |form| %>
     <% unless action == "Update" %>
       <%= form.file_field :post_image %>
     <% end %>
