@@ -1,6 +1,6 @@
 <turbo-frame id="main_content">
   <div style="display:flex; flex-direction: column; align-items: center;">
     <%= render "form", post: @post, action: "Create" %>
-    <%= link_to "Cancel", @user%>
+    <%= link_to "Cancel", @user, data: { turbo_action: "advance" }%>
   </div>
 </turbo-frame>
