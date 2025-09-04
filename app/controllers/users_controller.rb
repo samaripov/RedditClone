@@ -45,7 +45,7 @@ class UsersController < ApplicationController
               partial: "users/user"
             ),
             turbo_stream.replace("profile_actions", partial: "users/profile_actions")
-          ]
+          ], status: :ok
         end
       else
         refresh_form_errors(format, "Update")

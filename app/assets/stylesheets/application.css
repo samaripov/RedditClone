@@ -48,12 +48,12 @@ input {
   transition: all 0.1s ease-in-out;
   flex: 1;
 }
-#main_content {
+#main_content, .center_content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#main_content > * {
+#main_content > *, .center_content > * {
   width: 100%;
 }
 form {

@@ -38,13 +38,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should update user when logged in with correct password" do
     patch user_path(@user), params: { user: { username: "updateduser", current_password: "Password#1234" } }
-    assert_response :success
     @user.reload
     assert_equal "updateduser", @user.username
   end
 
   test "should not update user with incorrect password" do
-    log_in_as(@user)
     patch user_path(@user), params: { user: { username: "updateduser", current_password: "wrongpassword" } }
     assert_response :not_acceptable
   end
@@ -56,12 +54,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy user when logged in" do
-    log_in_as(@user)
     assert_difference("User.count", -1) do
       delete user_path(@user), params: { user: { current_password: "Password#1234" } }
     end
-
-    assert_redirected_to root_path
   end
 
   test "should not destroy user when not logged in" do

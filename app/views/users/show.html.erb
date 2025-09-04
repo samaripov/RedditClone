@@ -8,7 +8,7 @@
     <% end %>
 
     <%= paginate @posts %>
-    <div id="posts">
+    <div id="posts" class="center_content">
       <%= render partial: "posts/post", collection: @posts %>
     </div>
     <%= paginate @posts %>

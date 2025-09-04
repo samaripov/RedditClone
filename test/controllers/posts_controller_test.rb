@@ -13,7 +13,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     log_in_as(@user)
     get posts_path
-    assert_redirected_to posts_path(1)
+    assert_response :success
   end
 
   test "should get new when logged in" do
