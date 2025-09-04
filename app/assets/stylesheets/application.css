@@ -52,18 +52,28 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-block-start: 1rem;
+  width: 100%;
+  padding-inline: 27.5rem;
+  justify-self: center;
+  overflow-y: scroll;
+  background-image: url("/pexels-souvenirpixels-1539225.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 10% 50%;
+  background-repeat: no-repeat;
 }
 #main_content > *, .center_content > * {
   width: 100%;
 }
 #posts {
   min-width: 100%;
-
 }
 form {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  width: 100%;
 }
 form > * {
   flex: 1;
@@ -77,13 +87,15 @@ text-area {
   background: white;
   border-radius: 1rem;
   display: flex;
-  width: fit-content;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   align-self: center;
   justify-self: center;
-  padding: 1rem;
+}
+#login > * {
+  width: 90%;
+  text-align: center;
 }
 .horizontal-nav {
   top: 10rem;
@@ -95,18 +107,6 @@ div.space-between {
   justify-content: space-between;
   align-items: center;
 }
-.content {
-  padding-block-start: 1rem;
-  width: 100%;
-  padding-inline: 27.5rem;
-  justify-self: center;
-  overflow-y: scroll;
-  background-image: url("/pexels-souvenirpixels-1539225.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: 10% 50%;
-  background-repeat: no-repeat;
-}
 
 .navbar img {
   border-radius: 1rem;
@@ -117,7 +117,7 @@ div.space-between {
 }
 
 @media only screen and (max-width: 1400px) {
-  .content {
+  #main_content, .center_content {
     padding-inline: 10rem;
   }
   .navbar .avatar img {
@@ -127,7 +127,7 @@ div.space-between {
 }
 
 @media only screen and (max-width: 1000px) {
-  .content {
+  #main_content, .center_content {
     padding-inline: 1rem;
   }
   .post,
@@ -342,6 +342,12 @@ input[type="submit"]:hover {
   width: 100%;
   max-height: 35rem;
   object-fit: cover;
+}
+.post textarea {
+  resize: none;
+  min-height: 7rem;
+  border: 1px solid var(--chef-blue);
+  border-radius: 0.5rem;
 }
 .post .title {
   display: flex;
