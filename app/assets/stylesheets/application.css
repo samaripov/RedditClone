@@ -56,6 +56,10 @@ input {
 #main_content > *, .center_content > * {
   width: 100%;
 }
+#posts {
+  min-width: 100%;
+
+}
 form {
   display: flex;
   flex-direction: column;
