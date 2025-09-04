@@ -2,7 +2,7 @@
 
 <%= render "errors", user: user%>
 
-<%= form_with model: user do |form| %>
+<%= form_with model: user, data: { turbo_action: "advance" } do |form| %>
   <%= form.file_field :avatar %>
   <%= form.text_field :username, placeholder: "Username" %>
   <%= form.email_field :email_address, placeholder: "Email (example@example.com)" %>

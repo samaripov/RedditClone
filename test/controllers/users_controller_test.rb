@@ -38,6 +38,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should update user when logged in with correct password" do
     patch user_path(@user), params: { user: { username: "updateduser", current_password: "Password#1234" } }
+    assert_redirected_to @user
     @user.reload
     assert_equal "updateduser", @user.username
   end
