@@ -48,11 +48,13 @@ input {
   transition: all 0.1s ease-in-out;
   flex: 1;
 }
+#main_content {
+  padding-block-start: 1rem;
+}
 #main_content, .center_content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block-start: 1rem;
   width: 100%;
   height: 100%;
   padding-inline: 27.5rem;
