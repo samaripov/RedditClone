@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
   resources :users, only: [ :show, :new, :create, :edit, :update, :destroy ] do
     resources :posts do
-      
+      resources :comments, only: [ :new, :create, :edit, :update, :destroy ]
     end
   end
   post "/like_post/:id", to: "liked_posts#like_post", as: "like_post"

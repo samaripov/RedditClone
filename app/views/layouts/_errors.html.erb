@@ -1,0 +1,12 @@
+<div>
+  <% if entity.errors.any? %>
+  <div class="error">
+    <h2><%= pluralize(entity.errors.count, "error") %></h2>
+    <ul>
+      <% entity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>

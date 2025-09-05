@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
   before_action :require_login
   def new
-    @post = Post.find(params[:id])
+    post = Post.find(params[:id])
+    @comment = current_user.comments.build(post: post)
   end
 
   def create
