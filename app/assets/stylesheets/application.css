@@ -172,7 +172,7 @@ div.space-between {
   display: flex;
   flex-direction: column;
   font-size: x-large;
-  width: min-content;
+  max-width: 3rem;
   gap: 0.2rem;
 }
 .navbar span {
