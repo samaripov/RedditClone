@@ -91,16 +91,21 @@ text-area {
   background: white;
   border-radius: 1rem;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   align-self: center;
   justify-self: center;
-  padding-block-end: 1rem;
+  padding-block: 1rem;
 }
 #login > * {
   width: 90%;
   text-align: center;
+}
+#login h1 {
+  margin-block-start: 0;
+  margin-block-end: 1rem;
 }
 .horizontal-nav {
   top: 10rem;

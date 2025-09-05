@@ -1,15 +1,16 @@
-<% user ||= @user%>
+<div id="login">
+  <% user ||= @user%>
+  <%= render "errors", user: user%>
 
-<%= render "errors", user: user%>
-
-<%= form_with model: user, data: { turbo_action: "advance" } do |form| %>
-  <%= form.file_field :avatar %>
-  <%= form.text_field :username, placeholder: "Username" %>
-  <%= form.email_field :email_address, placeholder: "Email (example@example.com)" %>
-  <%= form.password_field :password, placeholder: "Password" %>
-  <%= form.password_field :password_confirmation, placeholder: "Confirm password" %>
-  <% if action == "Update" %>
-    <%= form.password_field :current_password, placeholder: "Current password" %>
+  <%= form_with model: user, data: { turbo_action: "advance" } do |form| %>
+    <%= form.file_field :avatar %>
+    <%= form.text_field :username, placeholder: "Username" %>
+    <%= form.email_field :email_address, placeholder: "Email (example@example.com)" %>
+    <%= form.password_field :password, placeholder: "Password" %>
+    <%= form.password_field :password_confirmation, placeholder: "Confirm password" %>
+    <% if action == "Update" %>
+      <%= form.password_field :current_password, placeholder: "Current password" %>
+    <% end %>
+    <%= form.submit "#{action} Account" %>
   <% end %>
-  <%= form.submit "#{action} Account" %>
-<% end %>
+</div>
