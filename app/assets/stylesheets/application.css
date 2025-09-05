@@ -52,6 +52,7 @@ input {
   padding-block-start: 1rem;
 }
 #main_content, .center_content {
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,7 +60,7 @@ input {
   height: 100%;
   padding-inline: 27.5rem;
   justify-self: center;
-  overflow-y: scroll;
+  overflow-y:inherit;
   background-image: url("/pexels-souvenirpixels-1539225.jpg");
   background-attachment: fixed;
   background-size: cover;
@@ -109,8 +110,8 @@ text-area {
   margin-block-end: 1rem;
 }
 .horizontal-nav {
+  overflow: hidden;
   top: 10rem;
-  height: 100%;
   display: flex;
 }
 div.space-between {
@@ -166,9 +167,12 @@ div.space-between {
   color: transparent;
 }
 .navbar {
-  top: 7rem;
+  top: 5rem;
+  padding-block-start: 2rem;
   color: white;
-  position: sticky;
+  background: white;
+  height: 100%;
+  position: fixed;
   padding-inline: 0.2rem;
   display: flex;
   flex-direction: column;
