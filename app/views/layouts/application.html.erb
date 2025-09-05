@@ -28,9 +28,12 @@
       <img src="/flame.gif" alt="A gif a flame" style="width: 2.5rem; height: 2.5rem;">
       <h1>Campfire</h1>
     </div>
-    <h1 style="visibility: hidden;">Campfire</h1>
+    <%# Dummy h1 to take space behind the title %>
+    <h1 style="color: white;">Campfire</h1>
     <div class="horizontal-nav">
       <%= render "users/navbar"%>
+      <%# Dummy div to take space behind the navbar %>
+      <div style="width: 4rem;"></div>
       <%= yield %>
     </div>
   </body>

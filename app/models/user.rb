@@ -17,4 +17,5 @@ class User < ApplicationRecord
   has_many :posts
   has_many :liked_posts
   has_many :favourite_posts, through: :liked_posts, source: :post
+  has_many :comments
 end
