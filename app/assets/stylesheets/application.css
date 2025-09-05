@@ -52,7 +52,6 @@ input {
   padding-block-start: 1rem;
 }
 #main_content, .center_content {
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,7 +88,6 @@ text-area {
 }
 
 .white-card {
-  overflow-y: hidden;
   color: black;
   background: white;
   border-radius: 1rem;
