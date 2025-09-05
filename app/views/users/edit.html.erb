@@ -4,9 +4,10 @@
       <span style="padding-block: 0.5rem;">Cancel</span>
     <% end %>
   </div>
-  <div style="display:flex; flex-direction: column; align-items: center;">
+  <div class="white-card">
     <%= render @user%>
     <!-- Renders the user edit form -->
     <%= render "form", user: @user, action: "Update" %>
+    <%= link_to "Delete Account?", confirm_delete_path(@user), data: { turbo_action: "advance" }, style: "padding-block-start: 1rem;" %>
   </div>
 </turbo-frame>

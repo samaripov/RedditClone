@@ -9,9 +9,5 @@
       <%= render partial: "posts/post", collection: @posts %>
     </div>
     <%= paginate @posts %>
-
-    <% if @show_actions %>
-      <%= link_to "Delete Account?", confirm_delete_path(@user), data: { turbo_action: "advance" } %>
-    <% end %>
   </div>
 </turbo-frame>
