@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
     respond_to do |format|
       format.html
       format.turbo_stream do

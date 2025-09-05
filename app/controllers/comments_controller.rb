@@ -1,14 +1,13 @@
 class CommentsController < ApplicationController
-  def show
-  end
-
-  def edit
-  end
-
+  before_action :require_login
   def new
+    @post = Post.find(params[:id])
   end
 
   def create
+  end
+
+  def edit
   end
 
   def update
@@ -16,4 +15,11 @@ class CommentsController < ApplicationController
 
   def delete
   end
+
+  private
+    def require_login
+      unless current_user
+        redirect_to new_session_path
+      end
+    end
 end
