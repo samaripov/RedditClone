@@ -141,7 +141,9 @@ div.space-between {
     height: 10rem;
   }
 }
-
+.spacer {
+  margin: 1rem;
+}
 @media only screen and (max-width: 1000px) {
   #main_content, .center_content {
     padding-inline: 1rem;

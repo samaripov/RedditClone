@@ -39,4 +39,5 @@
     </div>
   </div> 
   <%= button_to "Delete", user_post_path(current_user, @post), method: :delete, data: {turbo_confirm: "Are you sure you want to delete \"#{@post.title}\"?"}%>
+  <div class="spacer"></div>
 </turbo-frame>
