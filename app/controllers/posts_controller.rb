@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = current_user.comments.build(post: @post)
-    @comments = @post.comments
+    @comments = @post.comments.reverse
     respond_to do |format|
       format.html
       format.turbo_stream do
