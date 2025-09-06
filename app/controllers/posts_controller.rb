@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = current_user.comments.build(post: @post)
     respond_to do |format|
       format.html
       format.turbo_stream do

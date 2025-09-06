@@ -9,10 +9,13 @@ Rails.application.routes.draw do
   get "/home", to: "posts#index", as: "posts"
   get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
   resources :users, only: [ :show, :new, :create, :edit, :update, :destroy ] do
-    resources :posts do
-      resources :comments, only: [ :new, :create, :edit, :update, :destroy ]
-    end
+    resources :posts
   end
+
+  resources :posts do
+    resources :comments, only: [ :new, :create, :destroy ]
+  end
+
   post "/like_post/:id", to: "liked_posts#like_post", as: "like_post"
   delete "/unlike_post/:id", to: "liked_posts#unlike_post", as: "unlike_post"
   get "/login", to: "sessions#new", as: "new_session"

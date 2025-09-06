@@ -1,9 +1,9 @@
-<div>
+<div class="">
   <div class="errors_div">
     <%= render "layouts/errors", entity: comment%>
   </div>
-  <%= form_with model: [ @user, post ], data: { turbo_action: "advance" } do |form| %>
+  <%= form_with model: [ @post, comment ], data: { turbo_action: "advance" } do |form| %>
     <%= form.text_area :content, placeholder: "Inspiring words go here!"%>
-    <%= form.submit "" %>
+    <%= form.submit "Post Comment" %>
   <% end %>
 </div>

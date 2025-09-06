@@ -2,6 +2,7 @@
   <%= render @post %>
   <div class="white-card">
     <h1>Comments</h1>
+    <%= render "comments/form", post: @post, comment: @comment%>
   </div>
   <div class="spacer"></div>
 </turbo-frame>

@@ -26,6 +26,11 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+textarea {
+  resize: none;
+  border: 1px solid var(--chef-blue);
+  border-radius: 0.5rem;
+}
 a {
   text-decoration: none;
   color: var(--chef-blue);
@@ -364,10 +369,7 @@ input[type="submit"]:hover {
   object-fit: cover;
 }
 .post textarea {
-  resize: none;
   min-height: 7rem;
-  border: 1px solid var(--chef-blue);
-  border-radius: 0.5rem;
 }
 .post .title {
   display: flex;
