@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace("errors_div", partial: "layouts/errors", locals: { entity: @comment })
-            ], status: :unprocessable_entity
+          ], status: :unprocessable_entity
         end
       end
     end

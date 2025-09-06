@@ -1,5 +1,5 @@
-<div class="">
-  <div class="errors_div">
+<div>
+  <div id="errors_div">
     <%= render "layouts/errors", entity: comment%>
   </div>
   <%= form_with model: [ @post, comment ], data: { turbo_action: "advance" } do |form| %>
