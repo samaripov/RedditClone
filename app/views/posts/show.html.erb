@@ -5,6 +5,7 @@
     <%= render "comments/form", post: @post, comment: @comment%>
     <turbo-frame id="comments-for-post-<%= @post.id %>">
     </turbo-frame>
+    
   </div>
   <div class="spacer"></div>
 </turbo-frame>
