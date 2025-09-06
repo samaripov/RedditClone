@@ -32,6 +32,7 @@ body {
   overflow: hidden;
 }
 textarea {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   resize: none;
   border: 1px solid var(--chef-blue);
   border-radius: 0.5rem;
