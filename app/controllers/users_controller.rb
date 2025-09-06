@@ -62,9 +62,9 @@ class UsersController < ApplicationController
     def refresh_form_errors(format, action)
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
-          "user_errors_div",
-          partial: "users/errors",
-          locals: { user: current_user }
+          "errors_div",
+          partial: "layouts/errors",
+          locals: { entity: current_user }
         ), status: :unprocessable_entity
       end
     end
