@@ -1,18 +1,7 @@
 <% post ||= @post %>
 <div class="post">
-  <%= link_to user_path(post.user), data: { turbo_action: "advance" } do %>
-    <div class="title">
-      <div class="user">
-        <% if post.user.avatar.attached? %>
-          <%= image_tag post.user.avatar %>
-        <% else %>
-          <%= image_tag "/default_avatar.png" %>
-        <% end %>
-        <h4>@<%= post.user.username %></h4>
-      </div>
-    <p style="padding-inline: 1rem;"><%= time_ago_in_words(post.created_at) %> ago</p>
-    </div>
-  <% end %>
+  <%= render "users/user_title", user: post.user, created_at: post.created_at %>
+  
   <% if post.post_image.attached? %>
     <%= image_tag post.post_image %>
   <% end %>

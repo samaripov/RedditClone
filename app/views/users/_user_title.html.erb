@@ -1,0 +1,13 @@
+<%= link_to user_path(user), data: { turbo_action: "advance" } do %>
+  <div class="title">
+    <div class="user">
+      <% if user.avatar.attached? %>
+        <%= image_tag user.avatar %>
+      <% else %>
+        <%= image_tag "/default_avatar.png" %>
+      <% end %>
+      <h4>@<%= user.username %></h4>
+    </div>
+    <p style="padding-inline: 1rem;"><%= time_ago_in_words(created_at) %> ago</p>
+  </div>
+<% end %>
