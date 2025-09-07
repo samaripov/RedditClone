@@ -1,10 +1,11 @@
 <turbo-frame id="main_content">
-  <% page = @page ? @page : 1%>
   <% posts ||= @posts%>
-  <div id="posts" style="display: flex; flex-direction: column; align-items: center;">
-    <%= paginate posts %>
-    <%= render partial: "posts/post", collection: posts, as: :post %>
-    <%= paginate posts %>
-  </div>
-  <div class="spacer"></div>
+  <% if posts %>
+    <div id="posts" style="display: flex; flex-direction: column; align-items: center;">
+      <%= paginate posts %>
+      <%= render partial: "posts/post", collection: posts, as: :post %>
+      <%= paginate posts %>
+    </div>
+    <div class="spacer"></div>
+  <% end %>
 </turbo-frame>

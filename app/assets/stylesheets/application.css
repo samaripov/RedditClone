@@ -405,7 +405,7 @@ input[type="submit"]:hover {
 .horizontal-div svg {
   height: 2.35rem;
 }
-.horizontal-div button, .horizontal-div .button {
+.horizontal-div .white-button {
   gap: 0.5rem;
   background: white;
   border: 1px solid white;
