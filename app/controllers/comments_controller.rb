@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("comment-form", partial: "comments/form", locals: {comment: current_user.comments.build(post: @post)}),
+            turbo_stream.replace("comment-form", partial: "comments/form", locals: { comment: current_user.comments.build(post: @post) }),
             turbo_stream.prepend("comments-for-post-#{@post.id}", partial: "comments/comment", locals: { comment: @comment })
           ]
         end
