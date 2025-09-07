@@ -1,3 +1,8 @@
-<%= render "users/user_title", user: comment.user, created_at: comment.created_at %>
-<p style="text-align: start;"><%= comment.content %></p>
-<hr>
+<turbo-frame id="comment-<%= comment.id %>">
+  <%= render "users/user_title", user: comment.user, created_at: comment.created_at %>
+  <p style="text-align: start;"><%= comment.content %></p>
+  <% if current_user == comment.user %>
+    <%= button_to "Delete Comment", post_comment_path(comment.post, comment), method: :delete, data: { turbo_confirm: "Delete comment \n\"#{comment.content}\"?" }%>
+  <% end %>
+  <hr>
+</turbo-frame>

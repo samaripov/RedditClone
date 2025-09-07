@@ -22,13 +22,16 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def delete
+  def destroy
+    @comment = current_user.comments.find(params[:id])
+    if @comment
+      @comment.destroy
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.remove("comment-#{@comment.id}")
+        end
+      end
+    end
   end
 
   private
