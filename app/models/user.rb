@@ -18,4 +18,10 @@ class User < ApplicationRecord
   has_many :liked_posts
   has_many :favourite_posts, through: :liked_posts, source: :post
   has_many :comments
+
+  has_many :followings, foreign_key: :follower_id, class_name: "Following"
+  has_many :followed_users, through: :followings, source: :followed
+
+  has_many :reverse_followings, foreign_key: :followed_id, class_name: "Following"
+  has_many :followers, through: :reverse_followings, source: :follower
 end
