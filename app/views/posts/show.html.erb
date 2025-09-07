@@ -2,7 +2,9 @@
   <%= render @post %>
   <div class="white-card">
     <h1>Comments</h1>
-    <%= render "comments/form", post: @post, comment: @comment%>
+    <turbo-frame id="comment-form">
+      <%= render "comments/form", post: @post, comment: @comment%>
+    </turbo-frame>
     <turbo-frame id="comments-for-post-<%= @post.id %>">
     </turbo-frame>
     <%= render partial: "comments/comment", collection: @comments, as: :comment %>
