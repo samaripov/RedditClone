@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @page = params[:page] ? params[:page] : 1
-    @global_posts = Post.order(created_at: :desc).page @page
+    @posts = Post.order(created_at: :desc).page @page
   end
 
   def show
@@ -21,7 +21,18 @@ class PostsController < ApplicationController
       end
     end
   end
-
+def show_users_liked_posts
+  @page = params[:page] ? params[:page] : 1
+  @posts = Post.joins(:liked_posts).where(liked_posts: { user: current_user }).order(created_at: :desc).page @page
+  respond_to do |format|
+    format.html { render template: "posts/index" }
+    format.turbo_stream do
+      render turbo_stream: [
+        turbo_stream.replace("main_content", html: render_to_string(template: "posts/index", layout: false))
+      ]
+    end
+  end
+end
   def new
     @post = current_user.posts.build
   end

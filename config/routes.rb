@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get "comments/show"
-  get "comments/edit"
-  get "comments/new"
-  get "comments/create"
-  get "comments/update"
-  get "comments/delete"
   root "posts#index"
   get "/home", to: "posts#index", as: "posts"
   get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
@@ -15,7 +9,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [ :new, :create, :destroy ]
   end
-
+  get "/liked_posts", to: "posts#show_users_liked_posts", as: "users_liked_posts"
   post "/like_post/:id", to: "liked_posts#like_post", as: "like_post"
   delete "/unlike_post/:id", to: "liked_posts#unlike_post", as: "unlike_post"
   get "/login", to: "sessions#new", as: "new_session"
