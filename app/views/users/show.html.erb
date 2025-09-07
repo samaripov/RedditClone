@@ -1,9 +1,19 @@
 <turbo-frame id="main_content">
   <div style="display: flex; flex-direction: column; align-items: center;">
-    <turbo-frame id="profile_avatar">
+    <turbo-frame id="profile_avatar" style="color: white;">
       <%= render @user%>
     </turbo-frame>
-
+    <div class="horizontal-div" style="width: 100%; gap: 0.5rem;">
+      <%= link_to "#", data:{ turbo_action: "advance" }, class: "button" do%>
+          0 Followers
+        <% end %>
+        <%= link_to "#", data:{ turbo_action: "advance" }, class: "button" do%>
+          0 Following
+        <% end %>
+        <%= link_to "#", data:{ turbo_action: "advance" }, class: "button" do%>
+          Liked Posts
+        <% end %>
+    </div>
     <%= paginate @posts %>
     <div id="posts" class="center_content">
       <%= render partial: "posts/post", collection: @posts %>
