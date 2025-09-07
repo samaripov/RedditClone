@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   allow_unauthenticated_access only: %i[ index ]
-  before_action :set_user, only: %i[ new edit update create ]
+  before_action :set_user, only: %i[show new edit update create ]
+  before_action :require_login, except: %i[index]
 
   def index
     @page = params[:page] ? params[:page] : 1
@@ -9,7 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = current_user.comments.build(post: @post)
+    @comment = @user.comments.build(post: @post)
     @comments = @post.comments.reverse
     respond_to do |format|
       format.html
@@ -87,6 +88,18 @@ class PostsController < ApplicationController
   end
 
   private
+    def require_login
+      unless current_user
+        respond_to do |format|
+        format.html { redirect_to new_session_path }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("main_content", html: render_to_string(template: "sessions/new", layout: false))
+          ]
+        end
+      end
+      end
+    end
     def set_user
       @user = current_user
     end

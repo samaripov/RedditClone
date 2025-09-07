@@ -18,6 +18,9 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ><path fill="#000000" fill-rule="evenodd" d="M11 14a1 1 0 1 0 2 0V6h2a1 1 0 0 0 .707-1.707l-3-3a1 1 0 0 0-1.414 0l-3 3A1 1 0 0 0 9 6h2v8ZM4 8a1 1 0 0 0-1 1v9a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V9a1 1 0 0 0-1-1h-2a1 1 0 1 0 0 2h1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-8h1a1 1 0 1 0 0-2H4Z" clip-rule="evenodd"/></svg>
       <% end %>
       <%= link_to user_post_path(post.user, post), data: { turbo_action: "advance" }, class: "button" do%>
+        <span style="color: black;">
+          <%= post.comments.size %>
+        </span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" ><path fill="#000000" fill-rule="evenodd" d="M3 2.5A1.5 1.5 0 0 0 1.5 4v6A1.5 1.5 0 0 0 3 11.5h1.5v1.6l2.067-1.462l.194-.138H13a1.5 1.5 0 0 0 1.5-1.5V4A1.5 1.5 0 0 0 13 2.5H3ZM0 4a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H7.239l-3.056 2.162L3 16v-3a3 3 0 0 1-3-3V4Z" clip-rule="evenodd"/></svg>
       <% end %>
       <turbo-frame id="post-<%= post.id %>-likes">
