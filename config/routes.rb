@@ -6,11 +6,14 @@ Rails.application.routes.draw do
   get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
   resources :users, only: [ :show, :new, :create, :edit, :update, :destroy ] do
     resources :posts
+    post "/follow", to: "followings#follow", as: "follow_user"
+    post "/unfollow", to: "followings#unfollow", as: "unfollow_user"
   end
 
   resources :posts do
     resources :comments, only: [ :new, :create, :destroy ]
   end
+
   get "/liked_posts", to: "posts#show_users_liked_posts", as: "users_liked_posts"
   post "/like_post/:id", to: "liked_posts#like_post", as: "like_post"
   delete "/unlike_post/:id", to: "liked_posts#unlike_post", as: "unlike_post"
