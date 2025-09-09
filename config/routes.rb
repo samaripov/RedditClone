@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "followings/follow"
+  get "followings/unfollow"
   root "posts#index"
   get "/home", to: "posts#index", as: "posts"
   get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
