@@ -8,6 +8,8 @@
       <% end %>
       <h4>@<%= user.username %></h4>
     </div>
-    <p style="padding-inline: 1rem;"><%= time_ago_in_words(created_at) %> ago</p>
+    <% if created_at > 0 %>
+      <p style="padding-inline: 1rem;"><%= time_ago_in_words(created_at) %> ago</p>
+    <% end %>
   </div>
 <% end %>

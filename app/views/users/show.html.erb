@@ -4,14 +4,14 @@
       <%= render @user%>
     </turbo-frame>
     <div class="horizontal-div" style="width: 100%; gap: 0.5rem;">
-      <%= link_to "#", data:{ turbo_action: "advance" }, class: "white-button button" do%>
+      <%= link_to people_that_follow_current_path, data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
           0 Followers
         <% end %>
-        <%= link_to "#", data:{ turbo_action: "advance" }, class: "white-button button" do%>
+        <%= link_to people_current_follows_path, data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
           0 Following
         <% end %>
         <% if current_user == @user %>
-          <%= link_to users_liked_posts_path, data:{ turbo_action: "advance" }, class: "white-button button" do%>
+          <%= link_to users_liked_posts_path, data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
             Liked Posts
           <% end %>
         <% else %>

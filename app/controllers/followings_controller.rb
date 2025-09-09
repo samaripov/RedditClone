@@ -1,6 +1,14 @@
 class FollowingsController < ApplicationController
   before_action :new_session_path
 
+  def show_following
+    render_users(current_user.followed_users, "You Follow")
+  end
+
+  def show_followers
+    render_users(current_user.followers, "Your Followers")
+  end
+
   def follow
     user = User.find(params[:user_id])
     unless user
@@ -55,6 +63,20 @@ class FollowingsController < ApplicationController
     def require_login
       unless current_user
         redirect_to new_session_path
+      end
+    end
+
+    def render_users(users, title)
+      respond_to do |format|
+        format.html { render template: "users/users_list", locals: { users: users, title: title } }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(
+              "main-content",
+              html: render_to_string(template: "users/users_list", layout: false, locals: { users: users, title: title })
+            )
+          ]
+        end
       end
     end
 end
