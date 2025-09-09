@@ -12,7 +12,9 @@ module ActiveSupport
 
     # Add more helper methods to be used by all tests here...
     def log_in_as(user)
-      post login_user_path, params: { email_address: user.email_address, password: "Password#1234" }
+      @user_params = { username: user.username, email_address: user.email_address, password: "Password#1234", password_confirmation: "Password#1234" }
+      post users_path, params: { user: @user_params }
+      User.last
     end
 
     def log_out_user

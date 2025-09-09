@@ -14,14 +14,14 @@ class User < ApplicationRecord
                       length: { minimum: 8, maximum: 70 },
                       password_complexity: true,
                       if: -> { password.present? }
-  has_many :posts
-  has_many :liked_posts
-  has_many :favourite_posts, through: :liked_posts, source: :post
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :liked_posts, dependent: :destroy
+  has_many :favourite_posts, through: :liked_posts, source: :post, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
-  has_many :followings, foreign_key: :follower_id, class_name: "Following"
-  has_many :followed_users, through: :followings, source: :followed
+  has_many :followings, foreign_key: :follower_id, class_name: "Following", dependent: :destroy
+  has_many :followed_users, through: :followings, source: :followed, dependent: :destroy
 
-  has_many :reverse_followings, foreign_key: :followed_id, class_name: "Following"
-  has_many :followers, through: :reverse_followings, source: :follower
+  has_many :reverse_followings, foreign_key: :followed_id, class_name: "Following", dependent: :destroy
+  has_many :followers, through: :reverse_followings, source: :follower, dependent: :destroy
 end

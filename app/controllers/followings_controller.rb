@@ -3,30 +3,50 @@ class FollowingsController < ApplicationController
 
   def follow
     user = User.find(params[:user_id])
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace(
-            "follow-button",
-            partial: "users/followed_button",
-            locals: { user: user }
-          )
-        ]
+    unless user
+      flash[:alert] = "Dude, this user doesn't exist... Trust me bro."
+    end
+    followed_user = current_user.followings.create(followed_id: user.id)
+    if followed_user.persisted?
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(
+              "follow-button",
+              partial: "users/followed_button",
+              locals: { user: user }
+            )
+          ]
+        end
+      end
+    else
+      unless user
+        flash[:alert] = "Couldn't follow user, please try again"
       end
     end
   end
 
   def unfollow
     user = User.find(params[:user_id])
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace(
-            "follow-button",
-            partial: "users/follow_button",
-            locals: { user: user }
-          )
-        ]
+    unless user
+      flash[:alert] = "Dude, this user doesn't exist... Trust me bro."
+    end
+    if current_user.followings.exists?(followed_id: user.id)
+      current_user.followings.find_by(followed_id: user.id)&.destroy
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(
+              "follow-button",
+              partial: "users/follow_button",
+              locals: { user: user }
+            )
+          ]
+        end
+      end
+    else
+      unless user
+        flash[:alert] = "Couldn't unfollow user, please try again"
       end
     end
   end
