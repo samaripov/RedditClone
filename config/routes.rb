@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
-  get "followings/follow"
-  get "followings/unfollow"
   root "posts#index"
   get "/home", to: "posts#index", as: "posts"
   get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
   resources :users, only: [ :show, :new, :create, :edit, :update, :destroy ] do
     resources :posts
-    post "/follow", to: "followings#follow", as: "follow_user"
-    post "/unfollow", to: "followings#unfollow", as: "unfollow_user"
   end
-
+  post "/follow/:user_id", to: "followings#follow", as: "follow_user"
+  delete "/unfollow/:user_id", to: "followings#unfollow", as: "unfollow_user"
   resources :posts do
     resources :comments, only: [ :new, :create, :destroy ]
   end
