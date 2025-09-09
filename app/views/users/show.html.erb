@@ -15,9 +15,9 @@
             Liked Posts
           <% end %>
         <% else %>
-          <%= link_to users_liked_posts_path, data:{ turbo_action: "advance" }, class: "button" do%>
-            + Follow
-          <% end %>
+          <turbo-frame id="follow-button">
+            <%= render "follow_button", user: @user %>
+          </turbo-frame>
         <% end %>
     </div>
     <%= paginate @posts %>

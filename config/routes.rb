@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resources :users, only: [ :show, :new, :create, :edit, :update, :destroy ] do
     resources :posts
   end
+
   post "/follow/:user_id", to: "followings#follow", as: "follow_user"
   delete "/unfollow/:user_id", to: "followings#unfollow", as: "unfollow_user"
+
   resources :posts do
     resources :comments, only: [ :new, :create, :destroy ]
   end

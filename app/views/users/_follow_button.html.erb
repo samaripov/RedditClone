@@ -1,0 +1,5 @@
+<turbo-frame id="follow-button">
+  <%= button_to follow_user_path(user), data:{ turbo_action: "advance" } do%>
+    + Follow
+  <% end %>
+</turbo-frame>
