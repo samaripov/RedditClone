@@ -16,17 +16,7 @@ class FollowingsController < ApplicationController
     end
     followed_user = current_user.followings.create(followed_id: user.id)
     if followed_user.persisted?
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace(
-              "follow-button",
-              partial: "users/followed_button",
-              locals: { user: user }
-            )
-          ]
-        end
-      end
+      render_follow_button(user)
     else
       unless user
         flash[:alert] = "Couldn't follow user, please try again"
@@ -41,17 +31,7 @@ class FollowingsController < ApplicationController
     end
     if current_user.followings.exists?(followed_id: user.id)
       current_user.followings.find_by(followed_id: user.id)&.destroy
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace(
-              "follow-button",
-              partial: "users/follow_button",
-              locals: { user: user }
-            )
-          ]
-        end
-      end
+      render_follow_button(user)
     else
       unless user
         flash[:alert] = "Couldn't unfollow user, please try again"
@@ -65,7 +45,19 @@ class FollowingsController < ApplicationController
         redirect_to new_session_path
       end
     end
-
+    def render_follow_button(user)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(
+              "follow-button",
+              partial: "users/follow_button",
+              locals: { user: user, already_follow_user: current_user.followed_users.exists?(user.id) }
+            )
+          ]
+        end
+      end
+    end
     def render_users(users, title)
       respond_to do |format|
         format.html { render template: "users/users_list", locals: { users: users, title: title } }

@@ -16,7 +16,7 @@
           <% end %>
         <% else %>
           <turbo-frame id="follow-button">
-            <%= render "follow_button", user: @user %>
+            <%= render "follow_button", user: @user, already_follow_user: already_follow_user?(@user) %>
           </turbo-frame>
         <% end %>
     </div>
