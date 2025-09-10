@@ -3,7 +3,6 @@ class FollowingsController < ApplicationController
 
   def show_following
     render_users(current_user.followed_users, "You follow #{current_user.followed_users.count} users")
-    
   end
   def show_followers
     render_users(current_user.followers, "You have #{current_user.followers.count} followers")
@@ -50,8 +49,9 @@ class FollowingsController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace(
-              "followed_users_count",
-              partial: "users/followed_users"
+              "followers_count",
+              partial: "users/followers_of_user",
+              locals: { user: user }
             ),
             turbo_stream.replace(
               "follow_button",
