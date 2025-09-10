@@ -2,11 +2,11 @@ class FollowingsController < ApplicationController
   before_action :new_session_path
 
   def show_following
-    render_users(current_user.followed_users, "You Follow")
+    render_users(current_user.followed_users, "You follow #{current_user.followed_users.count} users")
+    
   end
-
   def show_followers
-    render_users(current_user.followers, "Your Followers")
+    render_users(current_user.followers, "You have #{current_user.followers.count} followers")
   end
 
   def follow
