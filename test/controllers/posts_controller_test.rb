@@ -64,7 +64,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_match(/turbo-stream/, response.body)
     assert_match(/main_content/, response.body)
   end
- 
+
   test "should redirect to login when not logged in for followings_posts" do
     log_out_user
     get camp_path
