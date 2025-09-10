@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     resources :posts
   end
 
-  get "/followings", to: "followings#show_following", as: "people_current_follows"
-  get "/followers", to: "followings#show_followers", as: "people_that_follow_current"
+  get "/followings/:user_id", to: "followings#show_following", as: "user_follows"
+  get "/followers/:user_id", to: "followings#show_followers", as: "users_followers"
   post "/follow/:user_id", to: "followings#follow", as: "follow_user"
   delete "/unfollow/:user_id", to: "followings#unfollow", as: "unfollow_user"
 

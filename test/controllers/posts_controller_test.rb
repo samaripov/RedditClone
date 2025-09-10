@@ -76,9 +76,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     follower = @user
     followed_user = users(:two)
     other_user = User.create!(
-      username: "otheruser", 
-      email_address: "other@example.com", 
-      password: "Password#1234", 
+      username: "otheruser",
+      email_address: "other@example.com",
+      password: "Password#1234",
       password_confirmation: "Password#1234"
     )
 
@@ -92,15 +92,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     get camp_path
     assert_response :success
-    
+
     posts = assigns(:posts)
-    
+
     # Should include posts from followed users
     assert_includes posts.map(&:id), followed_post.id
-    
+
     # Should not include posts from non-followed users
     assert_not_includes posts.map(&:id), other_post.id
-    
+
     # Should not include own posts (user doesn't follow themselves by default)
     assert_not_includes posts.map(&:id), own_post.id
   end
@@ -109,7 +109,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     # User doesn't follow anyone
     get camp_path
     assert_response :success
-    
+
     posts = assigns(:posts)
     assert_equal 0, posts.count
   end
@@ -121,15 +121,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     # Create multiple posts from followed user
     15.times do |i|
       Post.create!(
-        title: "Post #{i}", 
-        description: "Description #{i}", 
+        title: "Post #{i}",
+        description: "Description #{i}",
         user: followed_user
       )
     end
 
     get camp_path, params: { page: 1 }
     assert_response :success
-    
+
     posts = assigns(:posts)
     assert_respond_to posts, :current_page
     assert_respond_to posts, :total_pages
@@ -154,7 +154,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     get camp_path
     assert_response :success
-    
+
     posts = assigns(:posts).to_a
     assert posts.first.created_at >= posts.last.created_at
   end
@@ -162,9 +162,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "should include multiple followed users posts" do
     followed_user1 = users(:two)
     followed_user2 = User.create!(
-      username: "followed2", 
-      email_address: "followed2@example.com", 
-      password: "Password#1234", 
+      username: "followed2",
+      email_address: "followed2@example.com",
+      password: "Password#1234",
       password_confirmation: "Password#1234"
     )
 
@@ -178,7 +178,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     get camp_path
     assert_response :success
-    
+
     posts = assigns(:posts)
     assert_includes posts.map(&:id), post1.id
     assert_includes posts.map(&:id), post2.id

@@ -1,6 +1,10 @@
 <turbo-frame id="main_content">
   <div class="white-card">
-    <h1><%= title %></h1>
+    <% if title == "followers" %>
+      <h1><%= "You have #{pluralize(current_user.followed_users.count, "follower")}" %></h1>
+    <% else %>
+      <h1><%= "You follow #{pluralize(current_user.followed_users.count, "user")}" %></h1>
+    <% end %>
     <% users.each do |user| %>
       <%= render "users/user_title", user: user, created_at: 0%>
     <% end %>

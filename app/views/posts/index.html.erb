@@ -10,7 +10,7 @@
     </div>
     <% if @title == "Home Camp" %>
         <%= link_to people_current_follows_path, style: "max-width: 80%; margin-block-start: 1rem;",data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
-          <%= current_user.followed_users.count %> Followings
+          <%= pluralize(current_user.followed_users.count, "Following")%>
         <% end %>
       <% end %>
   </div>

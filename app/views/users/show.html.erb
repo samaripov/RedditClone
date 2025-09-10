@@ -4,10 +4,10 @@
       <%= render @user%>
     </turbo-frame>
     <div class="horizontal-div" style="width: 100%; gap: 0.5rem;">
-      <%= link_to people_current_follows_path, data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
-        <%= @user.followed_users.count %> Followings
+      <%= link_to user_follows_path(@user), data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
+        <%= pluralize(@user.followed_users.count, "Following")%>
       <% end %>
-      <%= link_to people_that_follow_current_path, data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
+      <%= link_to users_followers_path(@user), data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
         <turbo-frame id="followers_count"> 
           <%= render "users/followers_of_user", user: @user %>
         </turbo-frame> 

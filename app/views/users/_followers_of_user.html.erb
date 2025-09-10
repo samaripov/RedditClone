@@ -1,4 +1,4 @@
 <turbo-frame id="followers_count">
   <% user ||= @user%>
-  <%= user.followers.count %> Followers
+  <%= pluralize(user.followers.count, "Follower")%>
 </turbo-frame>
