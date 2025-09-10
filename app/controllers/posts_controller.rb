@@ -4,8 +4,25 @@ class PostsController < ApplicationController
   before_action :require_login, except: %i[index]
 
   def index
+    @title = "Explore Page"
+    @description = "Posts from around the forest!"
     @page = params[:page] ? params[:page] : 1
     @posts = Post.order(created_at: :desc).page @page
+  end
+
+  def followings_posts
+    @title = "Home Camp"
+    @description = "Posts from people you follow"
+    @page = params[:page] ? params[:page] : 1
+    @posts = Post.joins(:user).joins(user: :followings).where(followings: { followed_id: current_user.id }).page @page
+    respond_to do |format|
+      format.html { render template: "posts/index" }
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace("main_content", html: render_to_string(template: "posts/index", layout: false))
+        ]
+      end
+    end
   end
 
   def show

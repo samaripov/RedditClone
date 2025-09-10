@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "posts#index"
-  get "/home", to: "posts#index", as: "posts"
+  get "/explore", to: "posts#index", as: "posts"
+  get "/camp", to: "posts#followings_posts", as: "camp"
   get "/users/:userid/confirm_delete", to: "users#confirm_delete", as: "confirm_delete"
   resources :users, only: [ :show, :new, :create, :edit, :update, :destroy ] do
     resources :posts

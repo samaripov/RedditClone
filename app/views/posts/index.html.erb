@@ -1,5 +1,14 @@
 <turbo-frame id="main_content">
   <% posts ||= @posts%>
+  <div class="white-card">
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <img src="/flame.gif" alt="A gif a flame" style="width: 4rem; height: 4rem;">
+      <div>
+        <h1 style="margin: 0;"><%= @title %></h1>
+        <p style="margin: 0;"><%= @description %></p>
+      </div>
+    </div>
+  </div>
   <% if posts %>
     <div id="posts" style="display: flex; flex-direction: column; align-items: center;">
       <%= paginate posts %>
