@@ -35,7 +35,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should validate email format" do
-    invalid_emails = ["invalid", "@example.com", "test@", "test.example.com"]
+    invalid_emails = [ "invalid", "@example.com", "test@", "test.example.com" ]
     invalid_emails.each do |email|
       @user.email_address = email
       assert_not @user.valid?, "#{email} should be invalid"
@@ -147,10 +147,10 @@ class UserTest < ActiveSupport::TestCase
   test "should create following relationships correctly" do
     @user.save!
     other_user = users(:two)
-    
+
     # Follow another user
     following = @user.followings.create!(followed: other_user)
-    
+
     assert_includes @user.followed_users, other_user
     assert_includes other_user.followers, @user
   end
@@ -158,10 +158,10 @@ class UserTest < ActiveSupport::TestCase
   test "should create liked posts correctly" do
     @user.save!
     post = posts(:one)
-    
+
     # Like a post
     liked_post = @user.liked_posts.create!(post: post)
-    
+
     assert_includes @user.favourite_posts, post
     assert_includes post.likes_from_users, @user
   end
