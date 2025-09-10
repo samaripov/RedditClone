@@ -9,7 +9,7 @@
       </div>
     </div>
     <% if @title == "Home Camp" %>
-        <%= link_to people_current_follows_path, style: "max-width: 80%; margin-block-start: 1rem;",data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
+        <%= link_to user_follows_path(current_user), style: "max-width: 80%; margin-block-start: 1rem;",data:{ turbo_action: "advance", turbo_frame: "main_content" }, class: "white-button button" do%>
           <%= pluralize(current_user.followed_users.count, "Following")%>
         <% end %>
       <% end %>
