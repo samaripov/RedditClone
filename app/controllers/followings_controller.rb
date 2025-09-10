@@ -50,7 +50,11 @@ class FollowingsController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace(
-              "follow-button",
+              "followed_users_count",
+              partial: "users/followed_users"
+            ),
+            turbo_stream.replace(
+              "follow_button",
               partial: "users/follow_button",
               locals: { user: user, already_follow_user: current_user.followed_users.exists?(user.id) }
             )
@@ -64,7 +68,7 @@ class FollowingsController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace(
-              "main-content",
+              "main_content",
               html: render_to_string(template: "users/users_list", layout: false, locals: { users: users, title: title })
             )
           ]

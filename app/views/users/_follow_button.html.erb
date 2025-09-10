@@ -1,4 +1,4 @@
-<turbo-frame id="follow-button">
+<turbo-frame id="follow_button">
   <% if already_follow_user %>
     <%= button_to unfollow_user_path(user), method: :delete, data:{ turbo_action: "advance" }, class: "white-button" do %>
       - Unfollow
