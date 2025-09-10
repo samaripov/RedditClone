@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_current_user, only: %i[ edit update destroy ]
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc).page params[:page]
+    @posts = set_posts(@user)
   end
 
   def new
@@ -38,6 +38,12 @@ class UsersController < ApplicationController
         refresh_form_errors(format, "Update")
       elsif @user.update(user_params)
         format.html { redirect_to @user }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("navbar_frame", partial: "users/navbar"),
+            turbo_stream.replace("main_content", html: render_to_string(template: "users/show", layout: false, locals: { posts: Post.order(created_at: :desc).page(1).per(10) }))
+          ]
+        end
       else
         refresh_form_errors(format, "Update")
       end
@@ -68,9 +74,15 @@ class UsersController < ApplicationController
         ), status: :unprocessable_entity
       end
     end
+
     def set_current_user
       @user = current_user
     end
+
+    def set_posts(user)
+      user.posts.order(created_at: :desc).page params[:page]
+    end
+
     def user_params
       params.require(:user).permit(:avatar, :username, :email_address, :password, :password_confirmation)
     end

@@ -22,11 +22,12 @@
           </turbo-frame>
         <% end %>
     </div>
-    <%= paginate @posts %>
+    <% posts ||= @posts%>
+    <%= paginate posts %>
     <div id="posts" class="center_content">
-      <%= render partial: "posts/post", collection: @posts %>
+      <%= render partial: "posts/post", collection: posts %>
     </div>
-    <%= paginate @posts %>
+    <%= paginate posts %>
   </div>
   <div class="spacer"></div>
 </turbo-frame>
