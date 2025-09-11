@@ -39,6 +39,7 @@ class PostsController < ApplicationController
     end
   end
 def show_users_liked_posts
+  @title = "Liked Posts"
   @page = params[:page] ? params[:page] : 1
   @posts = Post.joins(:liked_posts).where(liked_posts: { user: current_user }).order(created_at: :desc).page @page
   respond_to do |format|
