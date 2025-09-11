@@ -34,16 +34,16 @@ production:
     url: <%= ENV['DATABASE_URL'] %>
   cache:
     <<: *default
-    database: instagram_clone_cache_production
-    migrations_paths: db/cache_migrate
     url: <%= ENV['DATABASE_URL'] %>
+    database_suffix: _cache
+    migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    database: instagram_clone_queue_production
-    migrations_paths: db/queue_migrate
     url: <%= ENV['DATABASE_URL'] %>
+    database_suffix: _queue
+    migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    database: instagram_clone_cable_production
-    migrations_paths: db/cable_migrate
     url: <%= ENV['DATABASE_URL'] %>
+    database_suffix: _cable
+    migrations_paths: db/cable_migrate
