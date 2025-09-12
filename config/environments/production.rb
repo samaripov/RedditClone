@@ -66,7 +66,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "campfire-eq6b.onrender.com" }
+  config.action_mailer.default_url_options = { host: "redditclone-production-7922.up.railway.app" }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
@@ -88,16 +88,9 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts = [
-    "campfire-eq6b.onrender.com",
-    /.*\.onrender\.com/
-  ]
+  config.hosts << "redditclone-production-7922.up.railway.app"
 
   # ActionCable configuration for production
-  config.action_cable.url = "wss://campfire-eq6b.onrender.com/cable"
-  config.action_cable.allowed_request_origins = [
-    "https://campfire-eq6b.onrender.com"
-  ]
 
   # Enable static file serving for assets
   config.public_file_server.enabled = true
