@@ -30,4 +30,8 @@ test:
 # is mounted as a persistent Docker volume in config/deploy.yml.
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  host: <%= ENV['PGHOST'] %>
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
+  database: <%= ENV['PGDATABASE'] %>
+  port: <%= ENV['PGPORT'] %>
