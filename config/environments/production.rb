@@ -80,10 +80,24 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
+  config.hosts = [
+    "campfire-eq6b.onrender.com",
+    /.*\.onrender\.com/
+  ]
+  # ActionCable configuration for production
+  config.action_cable.url = "wss://campfire-eq6b.onrender.com/cable"
+  config.action_cable.allowed_request_origins = [
+    "https://campfire-eq6b.onrender.com"
+  ]
+
+  # Fix action mailer host
+  config.action_mailer.default_url_options = { host: "campfire-eq6b.onrender.com" }
+
+  # Enable static file serving for assets
+  config.public_file_server.enabled = true
+
+  # Skip DNS rebinding protection for the default health check endpoint.
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
