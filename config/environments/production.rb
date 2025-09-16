@@ -91,7 +91,7 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts << "redditclone-production-7922.up.railway.app"
+  config.hosts << "https://campfire-iyo6.onrender.com"
 
   # ActionCable configuration for production
 
