@@ -69,7 +69,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "redditclone-production-7922.up.railway.app" }
+  config.action_mailer.default_url_options = { host: "https://campfire-iyo6.onrender.com" }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
@@ -92,15 +92,6 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts << "https://campfire-iyo6.onrender.com"
-
-  # Skip DNS rebinding protection for the default health check endpoint.
-  config.host_authorization = {
-    exclude: ->(request) {
-      request.path == "/up" ||
-      request.path.start_with?("/assets") ||
-      ENV["SKIP_HOST_CHECK"] == "true"
-    }
-  }
 
   # Enable static file serving for assets
   config.public_file_server.enabled = true
