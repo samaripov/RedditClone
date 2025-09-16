@@ -62,6 +62,15 @@ class UsersController < ApplicationController
     end
     @user.destroy
     reset_session
+    respond_to do |format|
+      format.html { redirect_to new_session_path }
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace("navbar_frame", partial: "users/navbar"),
+          turbo_stream.replace("main_content", html: render_to_string(template: "sessions/new", layout: false))
+        ]
+      end
+    end
   end
 
   private
