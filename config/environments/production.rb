@@ -91,7 +91,7 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts << "https://campfire-iyo6.onrender.com"
+  config.hosts << "campfire-iyo6.onrender.com"
 
   # Enable static file serving for assets
   config.public_file_server.enabled = true
