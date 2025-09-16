@@ -93,7 +93,14 @@ Rails.application.configure do
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts << "https://campfire-iyo6.onrender.com"
 
-  # ActionCable configuration for production
+  # Skip DNS rebinding protection for the default health check endpoint.
+  config.host_authorization = {
+    exclude: ->(request) {
+      request.path == "/up" ||
+      request.path.start_with?("/assets") ||
+      ENV["SKIP_HOST_CHECK"] == "true"
+    }
+  }
 
   # Enable static file serving for assets
   config.public_file_server.enabled = true
