@@ -3,7 +3,7 @@
   <%= render "users/user_title", user: post.user, created_at: post.created_at %>
   
   <% if post.post_image.attached? %>
-    <%= image_tag post.post_image %>
+    <%= image_tag url_for(post.post_image) %>
   <% end %>
   <div class="div-padding">
     <h2><%= post.title %></h2>

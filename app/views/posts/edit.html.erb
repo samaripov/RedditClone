@@ -10,7 +10,7 @@
       <div class="title">
         <div class="user">
           <% if post.user.avatar.attached? %>
-            <%= image_tag post.user.avatar %>
+            <%= image_tag url_for(post.user.avatar) %>
           <% else %>
             <%= image_tag "/default_avatar.png" %>
           <% end %>
@@ -20,7 +20,7 @@
       </div>
     <% end %>
     <% if post.post_image.attached? %>
-      <%= image_tag post.post_image %>
+      <%= image_tag url_for(post.post_image) %>
     <% end %>
     <div class="div-padding">
       <%= render "form", post: post, action: "Update" %>
