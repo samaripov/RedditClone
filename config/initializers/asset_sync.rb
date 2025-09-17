@@ -8,6 +8,6 @@ if defined?(AssetSync)
     config.existing_remote_files = "delete" # or 'keep'
     config.gzip_compression = true
     config.fog_public = true
-    config.fog_attributes = { cache_control: "max-age=315576000" }
+    config.fog_attributes = { "x-amz-acl" => "public-read" }
   end
 end
