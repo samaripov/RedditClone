@@ -133,11 +133,22 @@ GEM
     erubi (1.13.1)
     excon (1.3.0)
       logger
+    fog-aws (3.33.0)
+      base64 (>= 0.2, < 0.4)
+      fog-core (~> 2.6)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
     fog-core (2.6.0)
       builder
       excon (~> 1.0)
       formatador (>= 0.2, < 2.0)
       mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.5)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
     formatador (1.2.0)
       reline
     globalid (1.2.1)
@@ -205,6 +216,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
+    multi_json (1.17.0)
     net-imap (0.5.9)
       date
       net-protocol
@@ -407,6 +419,7 @@ DEPENDENCIES
   brakeman
   capybara
   debug
+  fog-aws
   hotwire-rails
   importmap-rails
   jbuilder
