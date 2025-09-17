@@ -5,8 +5,9 @@ if defined?(AssetSync)
     config.aws_secret_access_key = ENV["AWS_SECRET_ACCESS_KEY"]
     config.fog_directory = "campfire-storage-bucket"
     config.fog_region = "us-east-2"
-    config.fog_public = true
     config.existing_remote_files = "delete" # or 'keep'
     config.gzip_compression = true
+    config.fog_public = true
+    config.fog_attributes = { cache_control: "max-age=315576000" }
   end
 end
