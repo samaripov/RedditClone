@@ -18,6 +18,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 # Gemfile
 gem "asset_sync"
+gem "fog-aws"
 
 gem "rails-controller-testing"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
