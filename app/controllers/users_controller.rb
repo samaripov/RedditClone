@@ -19,12 +19,25 @@ class UsersController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace("navbar_frame", partial: "users/navbar"),
-            turbo_stream.replace("main_content", html: render_to_string(template: "posts/index", layout: false, locals: { global_posts: Post.order(created_at: :desc).page(1).per(10) }))
+            turbo_stream.replace("main_content", partial: "users/user", locals: { user: @user })
           ]
         end
       end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        # Render the full page (includes layout/frame) on 422
+        format.html { render :new, status: :unprocessable_entity }
+        # Return a real Turbo Stream response (not HTML string), with proper status
+        format.turbo_stream do
+          render(
+            turbo_stream: turbo_stream.replace(
+              "main_content",
+              partial: "users/new",
+              locals: { user: @user }
+            )
+          )
+        end
+      end
     end
   end
 

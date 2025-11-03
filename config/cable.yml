@@ -9,4 +9,5 @@ test:
   adapter: test
 
 production:
-  adapter: async
+  adapter: postgressql
+  channel_prefix: instagram_clone_production
